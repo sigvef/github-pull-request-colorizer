@@ -1,5 +1,6 @@
+const me = document.querySelector('summary[aria-label="View profile and more"] img.avatar').alt.slice(1);
+
 [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
-  const me = 'sigvef';
   const reviewRequired = !!row.querySelector('[aria-label="Review required before merging"]');
   const changesRequested = row.querySelectorAll('.muted-link.tooltipped').innerText === 'Changes requested';
   const assignee = (row.querySelector('.from-avatar') || {alt: ''}).alt.slice(1);
