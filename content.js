@@ -2,11 +2,13 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
 
 [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
   const reviewRequired = !!row.querySelector('[aria-label="Review required before merging"]');
+  const approved = row.querySelector('a.muted-link.tooltipped').innerText === 'Approved';
   const changesRequested = row.querySelector('a.muted-link.tooltipped').innerText === 'Changes requested';
   const assignee = (row.querySelector('.from-avatar') || {alt: ''}).alt.slice(1);
   const author = row.querySelector('.opened-by .muted-link').innerText;
   const title = row.querySelector('.link-gray-dark.h4').innerText;
   const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
+  const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
   const priorityLowLabel = row.querySelector('.labels a[title="Label: Priority: Low"]');
 
   let highlight = false;
@@ -19,6 +21,10 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
   }
 
   if(reviewRequired && author !== me && (assignee === me || assignee === '')) {
+    highlight = true;
+  }
+
+  if(approved && passesTravis) {
     highlight = true;
   }
 
