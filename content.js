@@ -2,7 +2,7 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
 
 [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
   const reviewRequired = !!row.querySelector('[aria-label="Review required before merging"]');
-  const changesRequested = row.querySelectorAll('.muted-link.tooltipped').innerText === 'Changes requested';
+  const changesRequested = row.querySelector('a.muted-link.tooltipped').innerText === 'Changes requested';
   const assignee = (row.querySelector('.from-avatar') || {alt: ''}).alt.slice(1);
   const author = row.querySelector('.opened-by .muted-link').innerText;
   const title = row.querySelector('.link-gray-dark.h4').innerText;
@@ -11,6 +11,10 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
 
   let highlight = false;
   if(failsTravis && author === me) {
+    highlight = true;
+  }
+
+  if(changesRequested && author === me) {
     highlight = true;
   }
 
