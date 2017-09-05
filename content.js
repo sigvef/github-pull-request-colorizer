@@ -32,7 +32,15 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
     highlight = true;
   }
 
+  if(title.slice(0, 5) === '[WIP]') {
+    highlight = true;
+  }
+
   if(title.slice(0, 3) === 'WIP' && author != me) {
+    highlight = false;
+  }
+
+  if(title.slice(0, 5) === '[WIP]' && author != me) {
     highlight = false;
   }
 
