@@ -21,7 +21,7 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
     highlight = true;
   }
 
-  if(reviewRequired && author !== me && (assignee === me || assignee === '')) {
+  if(!failsTravis && reviewRequired && author !== me && (assignee === me || assignee === '')) {
     highlight = true;
   }
 
