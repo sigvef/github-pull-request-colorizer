@@ -10,7 +10,7 @@ const me = document.querySelector('summary[aria-label="View profile and more"] i
   const title = (row.querySelector('.link-gray-dark.h4') || {}).innerText;
   const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
   const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
-  const priorityLowLabel = row.querySelector('.labels a[title="Label: Priority: Low"]');
+  const priorityLowLabel = row.querySelector('.labels a[aria-label="Priority: Low"]');
 
 
   let highlight = false;
