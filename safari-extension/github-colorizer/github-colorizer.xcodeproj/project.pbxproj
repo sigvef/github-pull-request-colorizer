@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		306410032118CEAD00E1D5F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 306410022118CEAD00E1D5F9 /* AppDelegate.m */; };
+		306410052118CEB400E1D5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 306410042118CEB400E1D5F9 /* Assets.xcassets */; };
+		306410082118CEB400E1D5F9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 306410062118CEB400E1D5F9 /* MainMenu.xib */; };
+		3064100B2118CEB400E1D5F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3064100A2118CEB400E1D5F9 /* main.m */; };
+		306410192118CEF200E1D5F9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306410182118CEF200E1D5F9 /* Cocoa.framework */; };
+		3064101D2118CEF200E1D5F9 /* SafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3064101C2118CEF200E1D5F9 /* SafariExtensionHandler.m */; };
+		306410202118CEF200E1D5F9 /* SafariExtensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3064101F2118CEF200E1D5F9 /* SafariExtensionViewController.m */; };
+		306410232118CEF200E1D5F9 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 306410212118CEF200E1D5F9 /* SafariExtensionViewController.xib */; };
+		306410282118CEF200E1D5F9 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */; };
+		3064102C2118CEF200E1D5F9 /* github-colorizer-safari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 306410162118CEF200E1D5F9 /* github-colorizer-safari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		306410322118E21700E1D5F9 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 306410312118E21700E1D5F9 /* content.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3064102A2118CEF200E1D5F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30640FF62118CEAD00E1D5F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 306410152118CEF200E1D5F9;
+			remoteInfo = "github-colorizer-safari";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		306410302118CEF200E1D5F9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3064102C2118CEF200E1D5F9 /* github-colorizer-safari.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		30640FFE2118CEAD00E1D5F9 /* github-colorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "github-colorizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		306410012118CEAD00E1D5F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		306410022118CEAD00E1D5F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		306410042118CEB400E1D5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		306410072118CEB400E1D5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		306410092118CEB400E1D5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3064100A2118CEB400E1D5F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3064100C2118CEB400E1D5F9 /* github_colorizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = github_colorizer.entitlements; sourceTree = "<group>"; };
+		306410162118CEF200E1D5F9 /* github-colorizer-safari.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "github-colorizer-safari.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		306410182118CEF200E1D5F9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3064101B2118CEF200E1D5F9 /* SafariExtensionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariExtensionHandler.h; sourceTree = "<group>"; };
+		3064101C2118CEF200E1D5F9 /* SafariExtensionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionHandler.m; sourceTree = "<group>"; };
+		3064101E2118CEF200E1D5F9 /* SafariExtensionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariExtensionViewController.h; sourceTree = "<group>"; };
+		3064101F2118CEF200E1D5F9 /* SafariExtensionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionViewController.m; sourceTree = "<group>"; };
+		306410222118CEF200E1D5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		306410242118CEF200E1D5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		306410292118CEF200E1D5F9 /* github_colorizer_safari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = github_colorizer_safari.entitlements; sourceTree = "<group>"; };
+		306410312118E21700E1D5F9 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30640FFB2118CEAD00E1D5F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		306410132118CEF200E1D5F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306410192118CEF200E1D5F9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30640FF52118CEAD00E1D5F9 = {
+			isa = PBXGroup;
+			children = (
+				306410002118CEAD00E1D5F9 /* github-colorizer */,
+				3064101A2118CEF200E1D5F9 /* github-colorizer-safari */,
+				306410172118CEF200E1D5F9 /* Frameworks */,
+				30640FFF2118CEAD00E1D5F9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30640FFF2118CEAD00E1D5F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30640FFE2118CEAD00E1D5F9 /* github-colorizer.app */,
+				306410162118CEF200E1D5F9 /* github-colorizer-safari.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		306410002118CEAD00E1D5F9 /* github-colorizer */ = {
+			isa = PBXGroup;
+			children = (
+				306410012118CEAD00E1D5F9 /* AppDelegate.h */,
+				306410022118CEAD00E1D5F9 /* AppDelegate.m */,
+				306410042118CEB400E1D5F9 /* Assets.xcassets */,
+				306410062118CEB400E1D5F9 /* MainMenu.xib */,
+				306410092118CEB400E1D5F9 /* Info.plist */,
+				3064100A2118CEB400E1D5F9 /* main.m */,
+				3064100C2118CEB400E1D5F9 /* github_colorizer.entitlements */,
+			);
+			path = "github-colorizer";
+			sourceTree = "<group>";
+		};
+		306410172118CEF200E1D5F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				306410182118CEF200E1D5F9 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3064101A2118CEF200E1D5F9 /* github-colorizer-safari */ = {
+			isa = PBXGroup;
+			children = (
+				3064101B2118CEF200E1D5F9 /* SafariExtensionHandler.h */,
+				3064101C2118CEF200E1D5F9 /* SafariExtensionHandler.m */,
+				3064101E2118CEF200E1D5F9 /* SafariExtensionViewController.h */,
+				3064101F2118CEF200E1D5F9 /* SafariExtensionViewController.m */,
+				306410212118CEF200E1D5F9 /* SafariExtensionViewController.xib */,
+				306410312118E21700E1D5F9 /* content.js */,
+				306410242118CEF200E1D5F9 /* Info.plist */,
+				306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */,
+				306410292118CEF200E1D5F9 /* github_colorizer_safari.entitlements */,
+			);
+			path = "github-colorizer-safari";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30640FFD2118CEAD00E1D5F9 /* github-colorizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3064100F2118CEB400E1D5F9 /* Build configuration list for PBXNativeTarget "github-colorizer" */;
+			buildPhases = (
+				30640FFA2118CEAD00E1D5F9 /* Sources */,
+				30640FFB2118CEAD00E1D5F9 /* Frameworks */,
+				30640FFC2118CEAD00E1D5F9 /* Resources */,
+				306410302118CEF200E1D5F9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3064102B2118CEF200E1D5F9 /* PBXTargetDependency */,
+			);
+			name = "github-colorizer";
+			productName = "github-colorizer";
+			productReference = 30640FFE2118CEAD00E1D5F9 /* github-colorizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		306410152118CEF200E1D5F9 /* github-colorizer-safari */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3064102D2118CEF200E1D5F9 /* Build configuration list for PBXNativeTarget "github-colorizer-safari" */;
+			buildPhases = (
+				306410122118CEF200E1D5F9 /* Sources */,
+				306410132118CEF200E1D5F9 /* Frameworks */,
+				306410142118CEF200E1D5F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "github-colorizer-safari";
+			productName = "github-colorizer-safari";
+			productReference = 306410162118CEF200E1D5F9 /* github-colorizer-safari.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30640FF62118CEAD00E1D5F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = ninjadev;
+				TargetAttributes = {
+					30640FFD2118CEAD00E1D5F9 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					306410152118CEF200E1D5F9 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 30640FF92118CEAD00E1D5F9 /* Build configuration list for PBXProject "github-colorizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30640FF52118CEAD00E1D5F9;
+			productRefGroup = 30640FFF2118CEAD00E1D5F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30640FFD2118CEAD00E1D5F9 /* github-colorizer */,
+				306410152118CEF200E1D5F9 /* github-colorizer-safari */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30640FFC2118CEAD00E1D5F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306410052118CEB400E1D5F9 /* Assets.xcassets in Resources */,
+				306410082118CEB400E1D5F9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		306410142118CEF200E1D5F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306410322118E21700E1D5F9 /* content.js in Resources */,
+				306410282118CEF200E1D5F9 /* ToolbarItemIcon.pdf in Resources */,
+				306410232118CEF200E1D5F9 /* SafariExtensionViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30640FFA2118CEAD00E1D5F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3064100B2118CEB400E1D5F9 /* main.m in Sources */,
+				306410032118CEAD00E1D5F9 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		306410122118CEF200E1D5F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306410202118CEF200E1D5F9 /* SafariExtensionViewController.m in Sources */,
+				3064101D2118CEF200E1D5F9 /* SafariExtensionHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3064102B2118CEF200E1D5F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 306410152118CEF200E1D5F9 /* github-colorizer-safari */;
+			targetProxy = 3064102A2118CEF200E1D5F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		306410062118CEB400E1D5F9 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				306410072118CEB400E1D5F9 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		306410212118CEF200E1D5F9 /* SafariExtensionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				306410222118CEF200E1D5F9 /* Base */,
+			);
+			name = SafariExtensionViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3064100D2118CEB400E1D5F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3064100E2118CEB400E1D5F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		306410102118CEB400E1D5F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer/github_colorizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4J4U5MGYLE;
+				INFOPLIST_FILE = "github-colorizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cristea.github-colorizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		306410112118CEB400E1D5F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer/github_colorizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4J4U5MGYLE;
+				INFOPLIST_FILE = "github-colorizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cristea.github-colorizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3064102E2118CEF200E1D5F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer-safari/github_colorizer_safari.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4J4U5MGYLE;
+				INFOPLIST_FILE = "github-colorizer-safari/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cristea.github-colorizer.github-colorizer-safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3064102F2118CEF200E1D5F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer-safari/github_colorizer_safari.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4J4U5MGYLE;
+				INFOPLIST_FILE = "github-colorizer-safari/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cristea.github-colorizer.github-colorizer-safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30640FF92118CEAD00E1D5F9 /* Build configuration list for PBXProject "github-colorizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3064100D2118CEB400E1D5F9 /* Debug */,
+				3064100E2118CEB400E1D5F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3064100F2118CEB400E1D5F9 /* Build configuration list for PBXNativeTarget "github-colorizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				306410102118CEB400E1D5F9 /* Debug */,
+				306410112118CEB400E1D5F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3064102D2118CEF200E1D5F9 /* Build configuration list for PBXNativeTarget "github-colorizer-safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3064102E2118CEF200E1D5F9 /* Debug */,
+				3064102F2118CEF200E1D5F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30640FF62118CEAD00E1D5F9 /* Project object */;
+}
