@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+function colorizePullRequests() {
   const me = document.querySelector('summary[aria-label="View profile and more"] img.avatar').alt.slice(1);
 
   [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
@@ -61,4 +61,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       row.style.borderColor = "#f2df92";
     }
   });
-});
+}
+
+try {
+  colorizePullRequests();
+} catch(e) {}
+
+document.addEventListener('DOMContentLoaded', colorizePullRequests);
