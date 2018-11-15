@@ -10,12 +10,8 @@ function colorizePullRequests() {
     const author = (row.querySelector('.opened-by .muted-link') || {}).innerText;
     const title = (row.querySelector('.link-gray-dark.h4') || {}).innerText;
     const isDjangoBackend = row.querySelector('.float-left.col-9.lh-condensed.p-2 a.muted-link').href === 'https://github.com/HyreAS/django-backend';
-    const failsTravis = isDjangoBackend
-      ? row.querySelector('.commit-build-statuses a.tooltipped').getAttribute('aria-label') !== '5 / 6 checks OK' && !!row.querySelector('.commit-build-statuses .text-red')
-      : !!row.querySelector('.commit-build-statuses .text-red');
-    const passesTravis = isDjangoBackend
-      ? row.querySelector('.commit-build-statuses a.tooltipped').getAttribute('aria-label') === '5 / 6 checks OK' || !!row.querySelector('.commit-build-statuses .text-green')
-      : !!row.querySelector('.commit-build-statuses .text-green');
+    const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
+    const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
     const priorityLowLabel = row.querySelector('.labels a[title="Priority: Low"]');
 
 
