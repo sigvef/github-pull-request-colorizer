@@ -1,0 +1,3 @@
+.project-column .issue-card.project-card[data-card-state="[\"closed\"]"] {
+  opacity: 0.25;
+}
