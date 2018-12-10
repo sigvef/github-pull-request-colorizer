@@ -1,5 +1,6 @@
 function colorizePullRequests() {
   const me = document.querySelector('summary[aria-label="View profile and more"] img.avatar').alt.slice(1);
+  const currentListIsForOpenPRs = !!document.querySelector('.table-list-filters .btn-link.selected[href*="is%3Aopen"]');
 
   [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
     const isPR = !!row.querySelector('[aria-label="Open pull request"]');
@@ -13,6 +14,7 @@ function colorizePullRequests() {
     const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
     const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
     const priorityLowLabel = row.querySelector('.labels a[title="Priority: Low"]');
+    const isMerged = !!row.querySelector('[aria-label="Merged pull request"]');
 
 
     let highlight = false;
@@ -55,6 +57,10 @@ function colorizePullRequests() {
     if(highlight) {
       row.style.background = '#f8efc5';
       row.style.borderColor = "#f2df92";
+    }
+
+    if(currentListIsForOpenPRs && isMerged) {
+      row.style.display = 'none';
     }
   });
 }
