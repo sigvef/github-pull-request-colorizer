@@ -1,3 +1,4 @@
-.project-column .issue-card.project-card[data-card-state="[\"closed\"]"] {
+.project-column .issue-card.project-card[data-card-state="[\"closed\"]"],
+.project-column .issue-card.project-card[data-card-state="[\"closed\",\"merged\"]"] {
   opacity: 0.25;
 }
