@@ -3,6 +3,7 @@ function colorizePullRequests() {
 
   [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
     const isPR = !!row.querySelector('[aria-label="Open pull request"]');
+    const isDraftPR = !!row.querySelector('[aria-label="Open draft pull request"]');
     const approved = (row.querySelector('a.muted-link.tooltipped') || {}).innerText === 'Approved';
     const changesRequested = (row.querySelector('a.muted-link.tooltipped') || {}).innerText === 'Changes requested';
     const reviewRequired = !(approved || changesRequested);
@@ -55,6 +56,12 @@ function colorizePullRequests() {
     if(highlight) {
       row.style.background = '#f8efc5';
       row.style.borderColor = "#f2df92";
+    }
+
+    if(isDraftPR) {
+      row.style.filter = 'invert(1)';
+      row.style.opacity = '0.25';
+      row.style.background = 'white';
     }
   });
 }
