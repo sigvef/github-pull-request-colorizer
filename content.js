@@ -59,9 +59,8 @@ function colorizePullRequests() {
     }
 
     if(isDraftPR) {
-      row.style.filter = 'invert(1)';
-      row.style.opacity = '0.25';
-      row.style.background = 'white';
+      row.style.opacity = '0.5';
+      row.style.background = '#fafafa';
     }
   });
 }
