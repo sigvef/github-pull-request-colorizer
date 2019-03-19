@@ -14,6 +14,36 @@ function colorizePullRequests() {
     const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
     const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
     const priorityLowLabel = row.querySelector('.labels a[title="Priority: Low"]');
+    const repositoryElement = (row.querySelector('[data-hovercard-type=repository]'));
+    const informationLineElement = (row.querySelector('div.text-small.text-gray'));
+    const titleElement = row.querySelector('.link-gray-dark.h4');
+    const PRIconElement = row.querySelector('div.float-left.pt-2.pl-3');
+
+    if(repositoryElement) {
+      const name = repositoryElement.innerText;
+      repositoryElement.innerText = name.replace(/^HyreAS\//, '');
+      repositoryElement.style.width = '160px';
+      repositoryElement.style.marginRight = '32px';
+      repositoryElement.style.textAlign = 'right';
+      repositoryElement.style.display = 'inline-block';
+
+      repositoryElement.style.setProperty('font-weight', '100', 'important');  
+    }
+    if(informationLineElement) {
+      informationLineElement.style.marginLeft = '197px';
+      if(isDraftPR) {
+        informationLineElement.style.setProperty('font-weight', '100', 'important');  
+      }
+    }
+    if(PRIconElement) {
+      PRIconElement.style.transform = 'translate(190px, 0px)';
+    }
+
+    if(titleElement) {
+      if(isDraftPR) {
+        titleElement.style.setProperty('font-weight', '100', 'important');  
+      }
+    }
 
 
     let highlight = false;
@@ -55,12 +85,10 @@ function colorizePullRequests() {
 
     if(highlight) {
       row.style.background = '#f8efc5';
-      row.style.borderColor = "#f2df92";
     }
 
     if(isDraftPR) {
-      row.style.opacity = '0.5';
-      row.style.background = '#fafafa';
+      row.classList.add('github-pull-request-colorizer--draft-pr');
     }
   });
 }

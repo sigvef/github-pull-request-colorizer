@@ -2,3 +2,14 @@
 .project-column .issue-card.project-card[data-card-state="[\"closed\",\"merged\"]"] {
   opacity: 0.25;
 }
+
+.github-pull-request-colorizer--draft-pr {
+  background: #f6f8fa;
+}
+.github-pull-request-colorizer--draft-pr > * {
+  opacity: 0.25;
+}
+
+.github-pull-request-colorizer--draft-pr svg path {
+  fill: #24292e;
+}
