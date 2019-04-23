@@ -18,6 +18,7 @@
 		306410282118CEF200E1D5F9 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */; };
 		3064102C2118CEF200E1D5F9 /* github-colorizer-safari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 306410162118CEF200E1D5F9 /* github-colorizer-safari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		306410322118E21700E1D5F9 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 306410312118E21700E1D5F9 /* content.js */; };
+		30E1AAD4226F4B26009D7B27 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 30E1AAD3226F4B26009D7B27 /* content.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		306410292118CEF200E1D5F9 /* github_colorizer_safari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = github_colorizer_safari.entitlements; sourceTree = "<group>"; };
 		306410312118E21700E1D5F9 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		30E1AAD3226F4B26009D7B27 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = content.css; path = ../../../content.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				3064101E2118CEF200E1D5F9 /* SafariExtensionViewController.h */,
 				3064101F2118CEF200E1D5F9 /* SafariExtensionViewController.m */,
 				306410212118CEF200E1D5F9 /* SafariExtensionViewController.xib */,
+				30E1AAD3226F4B26009D7B27 /* content.css */,
 				306410312118E21700E1D5F9 /* content.js */,
 				306410242118CEF200E1D5F9 /* Info.plist */,
 				306410272118CEF200E1D5F9 /* ToolbarItemIcon.pdf */,
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				306410322118E21700E1D5F9 /* content.js in Resources */,
+				30E1AAD4226F4B26009D7B27 /* content.css in Resources */,
 				306410282118CEF200E1D5F9 /* ToolbarItemIcon.pdf in Resources */,
 				306410232118CEF200E1D5F9 /* SafariExtensionViewController.xib in Resources */,
 			);
