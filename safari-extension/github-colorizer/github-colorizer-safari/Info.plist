@@ -35,6 +35,13 @@
 				<string>content.js</string>
 			</dict>
 		</array>
+		<key>SFSafariStyleSheet</key>
+		<array>
+			<dict>
+				<key>Style Sheet</key>
+				<string>content.css</string>
+			</dict>
+		</array>
 		<key>SFSafariToolbarItem</key>
 		<dict>
 			<key>Action</key>
