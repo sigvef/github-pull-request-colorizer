@@ -10,7 +10,6 @@ function colorizePullRequests() {
     const assignee = (row.querySelector('.from-avatar') || {alt: ''}).alt.slice(1);
     const author = (row.querySelector('.opened-by .muted-link') || {}).innerText;
     const title = (row.querySelector('.link-gray-dark.h4') || {}).innerText;
-    const isDjangoBackend = row.querySelector('.float-left.col-9.lh-condensed.p-2 a.muted-link').href === 'https://github.com/HyreAS/django-backend';
     const failsTravis = !!row.querySelector('.commit-build-statuses .text-red');
     const passesTravis = !!row.querySelector('.commit-build-statuses .text-green');
     const priorityLowLabel = row.querySelector('.labels a[title="Priority: Low"]');
