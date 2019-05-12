@@ -1,4 +1,51 @@
 function colorizePullRequests() {
+
+  function setUpdateNotification(text) {
+    const container = document.querySelector('.page-content .Box .Box-header .table-list-header-toggle');
+    const notificationElement = document.createElement('div');
+    notificationElement.textContent = text;
+    notificationElement.style.padding = '3px 6px';
+    notificationElement.style.padding = '3px 6px';
+    notificationElement.style.background = '#f8efc5';
+    notificationElement.style.border = '1px solid #dbab09';
+    notificationElement.style.color = '#7a5f04';
+    notificationElement.style.borderRadius = '2px';
+    notificationElement.style.display = 'inline-block';
+    notificationElement.style.margin = '-4px 0 -4px 16px';
+    container.appendChild(notificationElement);
+  }
+
+
+  try {
+    fetch('https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json')
+      .then(response => response.json())
+      .then(data => {
+          const localManifest = chrome.runtime.getManifest();
+          const masterManifest = JSON.parse(atob(data.content));
+          if(masterManifest.version !== localManifest.version) {
+            setUpdateNotification('Update for GitHub Pull Request Colorizer is available!');
+          }
+      });
+  } catch(e) {
+    setUpdateNotification('Checking for github-pull-request-colorizer updates doesn\'t work in this browser, it seems :/ Consider investingating and making a pull request!');
+  }
+
+  const localStorageVersionKey = 'github-pull-request-colorizer-last-updated';
+  fetch('https://api.github.com/repos/sigvef/github-pull-request-colorizer/git/refs/heads/master')
+    .then(response => response.json())
+    .then(data => {
+      fetch(data.object.url)
+        .then(response => response.json())
+        .then(commit => {
+          const masterDate = commit.committer.date;
+          const localDate = localStorage.getItem(localStorageVersionKey);
+          if(masterDate > localDate) {
+
+          }
+        });
+    });
+
+
   const me = document.querySelector('summary[aria-label="View profile and more"] img.avatar').alt.slice(1);
 
   [].forEach.call(document.querySelectorAll('.js-issue-row'), row => {
