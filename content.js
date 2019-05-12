@@ -17,6 +17,7 @@ function colorizePullRequests() {
     const informationLineElement = (row.querySelector('div.text-small.text-gray'));
     const titleElement = row.querySelector('.link-gray-dark.h4');
     const PRIconElement = row.querySelector('div.float-left.pt-2.pl-3');
+    const buildStatusElement = row.querySelector('.commit-build-statuses');
 
     if(repositoryElement) {
       const name = repositoryElement.innerText;
@@ -24,23 +25,32 @@ function colorizePullRequests() {
       repositoryElement.style.width = '160px';
       repositoryElement.style.marginRight = '32px';
       repositoryElement.style.textAlign = 'right';
-      repositoryElement.style.display = 'inline-block';
-
+      repositoryElement.style.float = 'left';
+      repositoryElement.style.height = '28px';
       repositoryElement.style.setProperty('font-weight', '100', 'important');  
     }
     if(informationLineElement) {
-      informationLineElement.style.marginLeft = '197px';
+      informationLineElement.style.marginLeft = '193px';
       if(isDraftPR) {
         informationLineElement.style.setProperty('font-weight', '100', 'important');  
       }
     }
     if(PRIconElement) {
-      PRIconElement.style.transform = 'translate(190px, 0px)';
+      PRIconElement.style.display = 'none';
     }
 
     if(titleElement) {
       if(isDraftPR) {
         titleElement.style.setProperty('font-weight', '100', 'important');  
+      }
+    }
+
+    if(buildStatusElement) {
+      const parent = buildStatusElement.parentElement;
+      if(parent) {
+        parent.style.position = 'absolute';
+        parent.style.left = '176px';
+        parent.style.top = '9px';
       }
     }
 
