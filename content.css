@@ -13,3 +13,8 @@
 .github-pull-request-colorizer--draft-pr svg path {
   fill: #24292e;
 }
+
+.markdown-body .container-md {
+  /* Make checks output full width */
+  max-width: none;
+}
