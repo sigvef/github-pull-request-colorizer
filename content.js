@@ -88,7 +88,7 @@ function colorizePullRequests() {
       "div.text-small.text-gray"
     );
     const titleElement = row.querySelector(".link-gray-dark.h4");
-    const PRIconElement = row.querySelector("div.float-left.pt-2.pl-3");
+    const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
     if (repositoryElement) {
