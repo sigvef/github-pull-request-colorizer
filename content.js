@@ -20,8 +20,8 @@ function colorizePullRequests() {
     fetch(
       "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json"
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const localManifest = chrome.runtime.getManifest();
         const masterManifest = JSON.parse(atob(data.content));
         if (masterManifest.version !== localManifest.version) {
@@ -32,7 +32,7 @@ function colorizePullRequests() {
       });
   } catch (e) {
     setUpdateNotification(
-      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investingating and making a pull request!"
+      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investigating and making a pull request!"
     );
   }
 
@@ -40,11 +40,11 @@ function colorizePullRequests() {
   fetch(
     "https://api.github.com/repos/sigvef/github-pull-request-colorizer/git/refs/heads/master"
   )
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       fetch(data.object.url)
-        .then(response => response.json())
-        .then(commit => {
+        .then((response) => response.json())
+        .then((commit) => {
           const masterDate = commit.committer.date;
           const localDate = localStorage.getItem(localStorageVersionKey);
           if (masterDate > localDate) {
@@ -56,7 +56,7 @@ function colorizePullRequests() {
     .querySelector('summary[aria-label="View profile and more"] img.avatar')
     .alt.slice(1);
 
-  [].forEach.call(document.querySelectorAll(".js-issue-row"), row => {
+  [].forEach.call(document.querySelectorAll(".js-issue-row"), (row) => {
     const isPR = !!row.querySelector('[aria-label="Open pull request"]');
     const isDraftPR = !!row.querySelector(
       '[aria-label="Open draft pull request"]'
@@ -89,11 +89,17 @@ function colorizePullRequests() {
     );
     const titleElement = row.querySelector(".link-gray-dark.h4");
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
+    const repoFullName = (repositoryElement
+      ? repositoryElement.innerText
+      : ""
+    ).trim();
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
-    const isBedriftPR =
-      (repositoryElement ? repositoryElement.innerText : "").trim() ===
-      "HyreAS/bedrift";
+    const isGreenPR = !!{
+      "HyreAS/bed": true,
+      "HyreAS/kvi": true,
+      "HyreAS/rep": true,
+    }[repoFullName.slice(0, 10)];
 
     if (repositoryElement) {
       const name = repositoryElement.innerText;
@@ -177,16 +183,16 @@ function colorizePullRequests() {
       highlight = false;
     }
 
-    if (highlight && !isBedriftPR) {
-      row.style.background = "#f8efc5";
+    if (highlight) {
+      row.style.backgroundColor = "#f8efc5";
     }
 
     if (isDraftPR) {
       row.classList.add("github-pull-request-colorizer--draft-pr");
     }
 
-    if (isBedriftPR) {
-      row.classList.add("github-pull-request-colorizer--bedrift-pr");
+    if (isGreenPR) {
+      row.classList.add("github-pull-request-colorizer--green-pr");
     }
   });
 }
