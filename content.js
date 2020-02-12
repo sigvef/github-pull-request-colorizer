@@ -91,6 +91,10 @@ function colorizePullRequests() {
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
+    const isBedriftPR =
+      (repositoryElement ? repositoryElement.innerText : "").trim() ===
+      "HyreAS/bedrift";
+
     if (repositoryElement) {
       const name = repositoryElement.innerText;
       repositoryElement.innerText = name.replace(/^HyreAS\//, "");
@@ -173,12 +177,16 @@ function colorizePullRequests() {
       highlight = false;
     }
 
-    if (highlight) {
+    if (highlight && !isBedriftPR) {
       row.style.background = "#f8efc5";
     }
 
     if (isDraftPR) {
       row.classList.add("github-pull-request-colorizer--draft-pr");
+    }
+
+    if (isBedriftPR) {
+      row.classList.add("github-pull-request-colorizer--bedrift-pr");
     }
   });
 }
