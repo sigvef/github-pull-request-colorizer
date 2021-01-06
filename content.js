@@ -1,3 +1,27 @@
+function colorizeAnnotations() {
+  for (const element of document.querySelectorAll(".check-annotation code")) {
+    const div = document.createElement("div");
+    div.classList.add("highlight", "highlight-source-diff");
+    const pre = element.firstChild;
+    const lines = pre.textContent.split("\n");
+    div.appendChild(pre);
+    element.replaceWith(div);
+    pre.removeChild(pre.firstChild);
+    for (const line of lines) {
+      const span = document.createElement("span");
+      span.textContent = line + "\n";
+      if (line[0] === "+") {
+        span.classList.add("pl-mi1");
+      } else if (line[0] === "-") {
+        span.classList.add("pl-md");
+      } else if (line[0] === "@") {
+        span.classList.add("pl-mdr");
+      }
+      pre.appendChild(span);
+    }
+  }
+}
+
 function colorizePullRequests() {
   function setUpdateNotification(text) {
     const container = document.querySelector(
@@ -200,5 +224,11 @@ function colorizePullRequests() {
 try {
   colorizePullRequests();
 } catch (e) {}
+try {
+  colorizeAnnotations();
+} catch (e) {}
 
 document.addEventListener("DOMContentLoaded", colorizePullRequests);
+document.addEventListener("DOMContentLoaded", colorizeAnnotations);
+
+setInterval(colorizeAnnotations, 500);
