@@ -3,8 +3,44 @@
   opacity: 0.25;
 }
 
+.github-pull-request-colorizer--notification {
+  padding: 3px 6px;
+  background: var(--color-scale-yellow-2);
+  border: 1px solid var(--color-scale-yellow-7);
+  color: var(--color-scale-yellow-9);
+  border-radius: 2px;
+  display: inline-block;
+  margin: -4px 0 -4px 16px;
+}
+
+a.github-pull-request-colorizer--repository {
+  width: 160px;
+  margin-right: 32px;
+  text-align: right;
+  float: left;
+  height: 28px;
+  font-weight: 100 !important;
+}
+
+.github-pull-request-colorizer--information-line {
+  margin-left: 193px;
+}
+
 .github-pull-request-colorizer--draft-pr {
   background: #f6f8fa;
+}
+
+.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--draft-pr {
+  background: #1f2a35;
+}
+
+.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--information-line,
+.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
+font-weight: 100 !important;
+}
+
+.github-pull-request-colorizer--dark-mode .github-pull-request-colorizer--title {
+  color: white !important;
 }
 
 .github-pull-request-colorizer--draft-pr > * {
@@ -21,12 +57,22 @@
 }
 
 .github-pull-request-colorizer--green-pr {
-  background-image: linear-gradient(45deg, #d1e8dd88 25%, #ffffff00 25%, #ffffff00 50%, #d1e8dd88 50%, #d1e8dd88 75%, #ffffff00 75%, #ffffff00 100%);
+  background-image: linear-gradient(45deg, var(--color-scale-purple-2) 25%, #ffffff00 25%, #ffffff00 50%, var(--color-scale-purple-2) 50%, var(--color-scale-purple-2) 75%, #ffffff00 75%, #ffffff00 100%);
   background-size: calc(56.57px * 2) calc(56.57px * 2);
-  border-bottom: 4px solid #d1e8dd;
-  border-top: 4px solid #d1e8dd !important;
+  border-bottom: 4px solid var(--color-scale-purple-3);
+  border-top: 4px solid var(--color-scale-purple-3) !important;
 }
 
 .github-pull-request-colorizer--green-pr svg path {
   fill: #24292e;
+}
+
+.github-pull-request-colorizer--build-status-parent {
+  position: absolute;
+  left: 176px;
+  top: 9px;
+}
+
+.github-pull-request-colorizer--highlight {
+  background-color: var(--color-scale-yellow-2) !important;
 }
