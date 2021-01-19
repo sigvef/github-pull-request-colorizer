@@ -44,7 +44,7 @@ font-weight: 100 !important;
 }
 
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--title {
-  color: var(--color-scale-yellow-9) !important;
+  color: var(--color-alert-warn-text) !important;
 }
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line,
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line a.muted-link {
@@ -64,11 +64,18 @@ font-weight: 100 !important;
   max-width: none;
 }
 
+.github-pull-request-colorizer--row,
+.github-pull-request-colorizer--row.mt-0,
+.github-pull-request-colorizer--row.pt-0 {
+  margin-top: -1px !important;
+  padding-top: 1px !important;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
 .github-pull-request-colorizer--green-pr {
-  background-image: linear-gradient(45deg, var(--color-scale-green-2) 25%, #ffffff00 25%, #ffffff00 50%, var(--color-scale-green-2) 50%, var(--color-scale-green-2) 75%, #ffffff00 75%, #ffffff00 100%);
+  background-image: linear-gradient(45deg, var(--color-alert-success-bg) 25%, #ffffff00 25%, #ffffff00 50%, var(--color-alert-success-bg) 50%, var(--color-alert-success-bg) 75%, #ffffff00 75%, #ffffff00 100%);
   background-size: calc(56.57px * 2) calc(56.57px * 2);
-  border-bottom: 4px solid var(--color-scale-green-3);
-  border-top: 4px solid var(--color-scale-green-3) !important;
 }
 
 .github-pull-request-colorizer--green-pr svg path {
@@ -82,5 +89,14 @@ font-weight: 100 !important;
 }
 
 .github-pull-request-colorizer--highlight {
-  background-color: var(--color-scale-yellow-2) !important;
+  background-color: var(--color-alert-warn-bg) !important;
+  border-top: 1px solid var(--color-alert-warn-border) !important;
+  border-bottom: 1px solid var(--color-alert-warn-border) !important;
+  transform: translateZ(20px);
+}
+
+.github-pull-request-colorizer--green-pr {
+  border-top: 1px solid var(--color-alert-success-border) !important;
+  border-bottom: 1px solid var(--color-alert-success-border) !important;
+  transform: translateZ(10px);
 }

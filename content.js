@@ -82,6 +82,7 @@ function colorizePullRequests() {
       '[aria-label="Open draft pull request"]'
     );
 
+    row.classList.add("github-pull-request-colorizer--row");
     if (darkMode) {
       row.classList.add("github-pull-request-colorizer--dark-mode");
     }
