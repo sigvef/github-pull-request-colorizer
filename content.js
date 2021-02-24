@@ -97,7 +97,7 @@ function colorizePullRequests() {
     const assignee = (
       row.querySelector(".from-avatar") || { alt: "" }
     ).alt.slice(1);
-    const author = (row.querySelector(".opened-by .muted-link") || {})
+    const author = (row.querySelector(".opened-by .Link--muted") || {})
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
     const failsTravis = !!row.querySelector(".commit-build-statuses .text-red");
