@@ -99,7 +99,7 @@ function colorizePullRequests() {
     ).alt.slice(1);
     const author = (row.querySelector(".opened-by .muted-link") || {})
       .innerText;
-    const title = (row.querySelector(".link-gray-dark.h4") || {}).innerText;
+    const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
     const failsTravis = !!row.querySelector(".commit-build-statuses .text-red");
     const passesTravis = !!row.querySelector(
       ".commit-build-statuses .text-green"
