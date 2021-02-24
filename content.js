@@ -88,10 +88,10 @@ function colorizePullRequests() {
     }
 
     const approved =
-      (row.querySelector("a.muted-link.tooltipped") || {}).innerText ===
+      (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Approved";
     const changesRequested =
-      (row.querySelector("a.muted-link.tooltipped") || {}).innerText ===
+      (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Changes requested";
     const reviewRequired = !(approved || changesRequested);
     const assignee = (
