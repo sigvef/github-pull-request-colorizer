@@ -88,10 +88,10 @@ function colorizePullRequests() {
     }
 
     const approved =
-      (row.querySelector("a.muted-link.tooltipped") || {}).innerText ===
+      (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Approved";
     const changesRequested =
-      (row.querySelector("a.muted-link.tooltipped") || {}).innerText ===
+      (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Changes requested";
     const reviewRequired = !(approved || changesRequested);
     const assignee = (
@@ -113,7 +113,7 @@ function colorizePullRequests() {
     const informationLineElement = row.querySelector(
       "div.text-small.text-gray"
     );
-    const titleElement = row.querySelector(".link-gray-dark.h4");
+    const titleElement = row.querySelector(".Link--primary.h4");
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
     const repoFullName = (repositoryElement
       ? repositoryElement.innerText
