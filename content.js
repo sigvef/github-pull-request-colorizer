@@ -25,9 +25,10 @@ function colorizeAnnotations() {
 function colorizePullRequests() {
   function setUpdateNotification(text) {
     const container = document.querySelector(
-      ".page-content .Box .Box-header .table-list-header-toggle"
+      ".Box .Box-header .table-list-header-toggle"
     );
     const notificationElement = document.createElement("div");
+    notificationElement.textContent = text;
     notificationElement.classList.add(
       "github-pull-request-colorizer--notification"
     );
