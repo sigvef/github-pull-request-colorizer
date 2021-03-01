@@ -100,9 +100,11 @@ function colorizePullRequests() {
     const author = (row.querySelector(".opened-by .Link--muted") || {})
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
-    const failsTravis = !!row.querySelector(".commit-build-statuses .text-red");
+    const failsTravis = !!row.querySelector(
+      ".commit-build-statuses .color-text-danger"
+    );
     const passesTravis = !!row.querySelector(
-      ".commit-build-statuses .text-green"
+      ".commit-build-statuses .color-text-success"
     );
     const priorityLowLabel = row.querySelector(
       '.labels a[title="Priority: Low"]'
@@ -111,7 +113,7 @@ function colorizePullRequests() {
       "[data-hovercard-type=repository]"
     );
     const informationLineElement = row.querySelector(
-      "div.text-small.text-gray"
+      "div.text-small.color-text-secondary"
     );
     const titleElement = row.querySelector(".Link--primary.h4");
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
