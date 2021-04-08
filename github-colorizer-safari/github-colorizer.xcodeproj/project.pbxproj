@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		307EBE97261EEF9B001B2B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EBE96261EEF9B001B2B79 /* AppDelegate.swift */; };
+		307EBE9A261EEF9B001B2B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 307EBE98261EEF9B001B2B79 /* Main.storyboard */; };
+		307EBE9C261EEF9B001B2B79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EBE9B261EEF9B001B2B79 /* ViewController.swift */; };
+		307EBE9E261EEFA0001B2B79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 307EBE9D261EEFA0001B2B79 /* Assets.xcassets */; };
+		307EBEA5261EEFA0001B2B79 /* github-colorizer Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 307EBEA4261EEFA0001B2B79 /* github-colorizer Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		307EBEAA261EEFA0001B2B79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EBEA9261EEFA0001B2B79 /* Cocoa.framework */; };
+		307EBEAD261EEFA0001B2B79 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307EBEAC261EEFA0001B2B79 /* SafariWebExtensionHandler.swift */; };
+		307EBED4261EEFE1001B2B79 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 307EBED0261EEFE1001B2B79 /* manifest.json */; };
+		307EBED5261EEFE1001B2B79 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 307EBED1261EEFE1001B2B79 /* content.js */; };
+		307EBED6261EEFE1001B2B79 /* content.css in Resources */ = {isa = PBXBuildFile; fileRef = 307EBED2261EEFE1001B2B79 /* content.css */; };
+		307EBED7261EEFE1001B2B79 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 307EBED3261EEFE1001B2B79 /* icon.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		307EBEA6261EEFA0001B2B79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 307EBE8A261EEF9B001B2B79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 307EBEA3261EEFA0001B2B79;
+			remoteInfo = "github-colorizer Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		307EBEC6261EEFA0001B2B79 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				307EBEA5261EEFA0001B2B79 /* github-colorizer Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		307EBE92261EEF9B001B2B79 /* github-colorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "github-colorizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		307EBE95261EEF9B001B2B79 /* github_colorizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = github_colorizer.entitlements; sourceTree = "<group>"; };
+		307EBE96261EEF9B001B2B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		307EBE99261EEF9B001B2B79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		307EBE9B261EEF9B001B2B79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		307EBE9D261EEFA0001B2B79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		307EBE9F261EEFA0001B2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		307EBEA4261EEFA0001B2B79 /* github-colorizer Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "github-colorizer Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		307EBEA9261EEFA0001B2B79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		307EBEAC261EEFA0001B2B79 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		307EBEBF261EEFA0001B2B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		307EBEC0261EEFA0001B2B79 /* github_colorizer_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = github_colorizer_Extension.entitlements; sourceTree = "<group>"; };
+		307EBED0261EEFE1001B2B79 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = ../../../manifest.json; sourceTree = "<group>"; };
+		307EBED1261EEFE1001B2B79 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../content.js; sourceTree = "<group>"; };
+		307EBED2261EEFE1001B2B79 /* content.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = content.css; path = ../../../content.css; sourceTree = "<group>"; };
+		307EBED3261EEFE1001B2B79 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../../icon.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		307EBE8F261EEF9B001B2B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307EBEA1261EEFA0001B2B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307EBEAA261EEFA0001B2B79 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		307EBE89261EEF9B001B2B79 = {
+			isa = PBXGroup;
+			children = (
+				307EBE94261EEF9B001B2B79 /* github-colorizer */,
+				307EBEAB261EEFA0001B2B79 /* github-colorizer Extension */,
+				307EBEA8261EEFA0001B2B79 /* Frameworks */,
+				307EBE93261EEF9B001B2B79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		307EBE93261EEF9B001B2B79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				307EBE92261EEF9B001B2B79 /* github-colorizer.app */,
+				307EBEA4261EEFA0001B2B79 /* github-colorizer Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		307EBE94261EEF9B001B2B79 /* github-colorizer */ = {
+			isa = PBXGroup;
+			children = (
+				307EBE95261EEF9B001B2B79 /* github_colorizer.entitlements */,
+				307EBE96261EEF9B001B2B79 /* AppDelegate.swift */,
+				307EBE98261EEF9B001B2B79 /* Main.storyboard */,
+				307EBE9B261EEF9B001B2B79 /* ViewController.swift */,
+				307EBE9D261EEFA0001B2B79 /* Assets.xcassets */,
+				307EBE9F261EEFA0001B2B79 /* Info.plist */,
+			);
+			path = "github-colorizer";
+			sourceTree = "<group>";
+		};
+		307EBEA8261EEFA0001B2B79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				307EBEA9261EEFA0001B2B79 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		307EBEAB261EEFA0001B2B79 /* github-colorizer Extension */ = {
+			isa = PBXGroup;
+			children = (
+				307EBEAC261EEFA0001B2B79 /* SafariWebExtensionHandler.swift */,
+				307EBEBF261EEFA0001B2B79 /* Info.plist */,
+				307EBEC0261EEFA0001B2B79 /* github_colorizer_Extension.entitlements */,
+				307EBEAE261EEFA0001B2B79 /* Resources */,
+			);
+			path = "github-colorizer Extension";
+			sourceTree = "<group>";
+		};
+		307EBEAE261EEFA0001B2B79 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				307EBED2261EEFE1001B2B79 /* content.css */,
+				307EBED1261EEFE1001B2B79 /* content.js */,
+				307EBED3261EEFE1001B2B79 /* icon.png */,
+				307EBED0261EEFE1001B2B79 /* manifest.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		307EBE91261EEF9B001B2B79 /* github-colorizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307EBEC7261EEFA0001B2B79 /* Build configuration list for PBXNativeTarget "github-colorizer" */;
+			buildPhases = (
+				307EBE8E261EEF9B001B2B79 /* Sources */,
+				307EBE8F261EEF9B001B2B79 /* Frameworks */,
+				307EBE90261EEF9B001B2B79 /* Resources */,
+				307EBEC6261EEFA0001B2B79 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				307EBEA7261EEFA0001B2B79 /* PBXTargetDependency */,
+			);
+			name = "github-colorizer";
+			productName = "github-colorizer";
+			productReference = 307EBE92261EEF9B001B2B79 /* github-colorizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		307EBEA3261EEFA0001B2B79 /* github-colorizer Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307EBEC3261EEFA0001B2B79 /* Build configuration list for PBXNativeTarget "github-colorizer Extension" */;
+			buildPhases = (
+				307EBEA0261EEFA0001B2B79 /* Sources */,
+				307EBEA1261EEFA0001B2B79 /* Frameworks */,
+				307EBEA2261EEFA0001B2B79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "github-colorizer Extension";
+			productName = "github-colorizer Extension";
+			productReference = 307EBEA4261EEFA0001B2B79 /* github-colorizer Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		307EBE8A261EEF9B001B2B79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					307EBE91261EEF9B001B2B79 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					307EBEA3261EEFA0001B2B79 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 307EBE8D261EEF9B001B2B79 /* Build configuration list for PBXProject "github-colorizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 307EBE89261EEF9B001B2B79;
+			productRefGroup = 307EBE93261EEF9B001B2B79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				307EBE91261EEF9B001B2B79 /* github-colorizer */,
+				307EBEA3261EEFA0001B2B79 /* github-colorizer Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		307EBE90261EEF9B001B2B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307EBE9E261EEFA0001B2B79 /* Assets.xcassets in Resources */,
+				307EBE9A261EEF9B001B2B79 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307EBEA2261EEFA0001B2B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307EBED7261EEFE1001B2B79 /* icon.png in Resources */,
+				307EBED6261EEFE1001B2B79 /* content.css in Resources */,
+				307EBED5261EEFE1001B2B79 /* content.js in Resources */,
+				307EBED4261EEFE1001B2B79 /* manifest.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		307EBE8E261EEF9B001B2B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307EBE9C261EEF9B001B2B79 /* ViewController.swift in Sources */,
+				307EBE97261EEF9B001B2B79 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307EBEA0261EEFA0001B2B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307EBEAD261EEFA0001B2B79 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		307EBEA7261EEFA0001B2B79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 307EBEA3261EEFA0001B2B79 /* github-colorizer Extension */;
+			targetProxy = 307EBEA6261EEFA0001B2B79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		307EBE98261EEF9B001B2B79 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				307EBE99261EEF9B001B2B79 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		307EBEC1261EEFA0001B2B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		307EBEC2261EEFA0001B2B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		307EBEC4261EEFA0001B2B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer Extension/github_colorizer_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "github-colorizer Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ninjadev.github-colorizer.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		307EBEC5261EEFA0001B2B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer Extension/github_colorizer_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "github-colorizer Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ninjadev.github-colorizer.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		307EBEC8261EEFA0001B2B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer/github_colorizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "github-colorizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ninjadev.github-colorizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		307EBEC9261EEFA0001B2B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "github-colorizer/github_colorizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "github-colorizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ninjadev.github-colorizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		307EBE8D261EEF9B001B2B79 /* Build configuration list for PBXProject "github-colorizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307EBEC1261EEFA0001B2B79 /* Debug */,
+				307EBEC2261EEFA0001B2B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307EBEC3261EEFA0001B2B79 /* Build configuration list for PBXNativeTarget "github-colorizer Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307EBEC4261EEFA0001B2B79 /* Debug */,
+				307EBEC5261EEFA0001B2B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307EBEC7261EEFA0001B2B79 /* Build configuration list for PBXNativeTarget "github-colorizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307EBEC8261EEFA0001B2B79 /* Debug */,
+				307EBEC9261EEFA0001B2B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 307EBE8A261EEF9B001B2B79 /* Project object */;
+}
