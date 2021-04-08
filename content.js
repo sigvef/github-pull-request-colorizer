@@ -44,7 +44,12 @@ function colorizePullRequests() {
   fetch(
     "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json"
   )
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 403) {
+        return response.json();
+      }
+      throw new Error("ratelimited");
+    })
     .then((data) => {
       try {
         const localManifest = chrome.runtime.getManifest();
@@ -58,7 +63,11 @@ function colorizePullRequests() {
         onError();
       }
     })
-    .catch(onError);
+    .catch((e) => {
+      if (e.message !== "ratelimited") {
+        onError();
+      }
+    });
 
   const me = document
     .querySelector('summary[aria-label="View profile and more"] img.avatar')
