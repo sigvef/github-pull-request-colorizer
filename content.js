@@ -133,12 +133,6 @@ function colorizePullRequests() {
     ).trim();
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
-    const isGreenPR = !!{
-      "HyreAS/bed": true,
-      "HyreAS/kvi": true,
-      "HyreAS/rep": true,
-    }[repoFullName.slice(0, 10)];
-
     if (repositoryElement) {
       const name = repositoryElement.innerText;
       repositoryElement.innerText = name.replace(/^HyreAS\//, "");
@@ -217,10 +211,6 @@ function colorizePullRequests() {
 
     if (isDraftPR) {
       row.classList.add("github-pull-request-colorizer--draft-pr");
-    }
-
-    if (isGreenPR) {
-      row.classList.add("github-pull-request-colorizer--green-pr");
     }
   });
 }
