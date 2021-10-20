@@ -122,14 +122,11 @@ function colorizePullRequests() {
     const repositoryElement = row.querySelector(
       "[data-hovercard-type=repository]"
     );
-    const informationLineElement = row.querySelector(
-      "div.text-small.color-text-secondary"
-    );
+    const informationLineElement = row.querySelector("span.opened-by");
     const titleElement = row.querySelector(".Link--primary.h4");
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
-    const repoFullName = (repositoryElement
-      ? repositoryElement.innerText
-      : ""
+    const repoFullName = (
+      repositoryElement ? repositoryElement.innerText : ""
     ).trim();
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
@@ -141,7 +138,7 @@ function colorizePullRequests() {
       );
     }
     if (informationLineElement) {
-      informationLineElement.classList.add(
+      informationLineElement.parentElement.classList.add(
         "github-pull-request-colorizer--information-line"
       );
     }
