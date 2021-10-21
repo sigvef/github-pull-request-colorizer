@@ -116,8 +116,8 @@ function colorizePullRequests() {
     const passesTravis = !!row.querySelector(
       ".commit-build-statuses .color-text-success"
     );
-    const priorityLowLabel = row.querySelector(
-      '.labels a[title="Priority: Low"]'
+    const skipLabel = row.querySelector(
+      'a.IssueLabel[data-name="Skip colorization"]'
     );
     const repositoryElement = row.querySelector(
       "[data-hovercard-type=repository]"
@@ -198,7 +198,7 @@ function colorizePullRequests() {
       highlight = false;
     }
 
-    if (priorityLowLabel) {
+    if (skipLabel) {
       highlight = false;
     }
 
