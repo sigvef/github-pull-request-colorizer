@@ -3,7 +3,7 @@
 
   "name": "GitHub Pull Request Colorizer",
   "description": "This extension colorizes pull request listings.",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "icons": {
     "32": "icon.png"
   },
@@ -11,7 +11,7 @@
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
-  "permissions": ["tabs"],
+  "permissions": ["https://api.github.com/*", "tabs"],
   "content_scripts": [
     {
       "matches": ["https://github.com/*"],
