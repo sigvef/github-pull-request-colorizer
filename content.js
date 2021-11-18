@@ -111,10 +111,10 @@ function colorizePullRequests() {
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
     const failsTravis = !!row.querySelector(
-      ".commit-build-statuses .color-text-danger"
+      ".commit-build-statuses .color-fg-danger"
     );
     const passesTravis = !!row.querySelector(
-      ".commit-build-statuses .color-text-success"
+      ".commit-build-statuses .color-fg-success"
     );
     const skipLabel = row.querySelector(
       'a.IssueLabel[data-name="Skip colorization"]'
