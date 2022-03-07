@@ -104,9 +104,9 @@ function colorizePullRequests() {
       (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Changes requested";
     const reviewRequired = !(approved || changesRequested);
-    const assignee = (
-      row.querySelector(".from-avatar") || { alt: "" }
-    ).alt.slice(1);
+    const assignees = Array.from(row.querySelectorAll(".from-avatar")).map(
+      (assignee) => assignee.alt.slice(1)
+    );
     const author = (row.querySelector(".opened-by .Link--muted") || {})
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
@@ -173,7 +173,7 @@ function colorizePullRequests() {
       isPR &&
       reviewRequired &&
       author !== me &&
-      (assignee === me || assignee === "")
+      (assignees.includes(me) || assignees.length === 0)
     ) {
       highlight = true;
     }
