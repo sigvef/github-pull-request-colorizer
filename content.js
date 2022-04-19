@@ -97,6 +97,9 @@ function colorizePullRequests() {
       row.classList.add("github-pull-request-colorizer--dark-mode");
     }
 
+    const hasDeferredContent =
+      row.querySelector("batch-deferred-content") !== null;
+
     const approved =
       (row.querySelector("a.Link--muted.tooltipped") || {}).innerText ===
       "Approved";
@@ -202,6 +205,10 @@ function colorizePullRequests() {
       highlight = false;
     }
 
+    if (hasDeferredContent) {
+      highlight = false;
+    }
+
     if (highlight) {
       row.classList.add("github-pull-request-colorizer--highlight");
     }
@@ -210,6 +217,12 @@ function colorizePullRequests() {
       row.classList.add("github-pull-request-colorizer--draft-pr");
     }
   });
+
+  const hasDeferredContent =
+    document.querySelector("batch-deferred-content") !== null;
+  if (hasDeferredContent) {
+    setTimeout(colorizePullRequests, 100);
+  }
 }
 
 try {
