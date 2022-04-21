@@ -23,52 +23,6 @@ function colorizeAnnotations() {
 }
 
 function colorizePullRequests() {
-  function setUpdateNotification(text) {
-    const container = document.querySelector(
-      ".Box .Box-header .table-list-header-toggle"
-    );
-    const notificationElement = document.createElement("div");
-    notificationElement.textContent = text;
-    notificationElement.classList.add(
-      "github-pull-request-colorizer--notification"
-    );
-    container.appendChild(notificationElement);
-  }
-
-  const onError = () => {
-    setUpdateNotification(
-      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investigating and making a pull request!"
-    );
-  };
-
-  fetch(
-    "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json"
-  )
-    .then((response) => {
-      if (response.status !== 403) {
-        return response.json();
-      }
-      throw new Error("ratelimited");
-    })
-    .then((data) => {
-      try {
-        const localManifest = chrome.runtime.getManifest();
-        const masterManifest = JSON.parse(atob(data.content));
-        if (masterManifest.version !== localManifest.version) {
-          setUpdateNotification(
-            "Update for GitHub Pull Request Colorizer is available!"
-          );
-        }
-      } catch {
-        onError();
-      }
-    })
-    .catch((e) => {
-      if (e.message !== "ratelimited") {
-        onError();
-      }
-    });
-
   const me = document
     .querySelector('summary[aria-label="View profile and more"] img.avatar')
     .alt.slice(1);
@@ -224,6 +178,64 @@ function colorizePullRequests() {
     setTimeout(colorizePullRequests, 100);
   }
 }
+
+function checkForUpdates() {
+  function setUpdateNotification(text) {
+    const container = document.querySelector(
+      ".Box .Box-header .table-list-header-toggle"
+    );
+    const notificationClassName = "github-pull-request-colorizer--notification";
+
+    let notificationElement = container.querySelector(
+      "." + notificationClassName
+    );
+    if (notificationElement) {
+      notificationElement.textContent = text;
+      return;
+    }
+
+    notificationElement = document.createElement("div");
+    notificationElement.textContent = text;
+    notificationElement.classList.add(notificationClassName);
+    container.appendChild(notificationElement);
+  }
+
+  function onError() {
+    setUpdateNotification(
+      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investigating and making a pull request!"
+    );
+  }
+
+  fetch(
+    "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json"
+  )
+    .then((response) => {
+      if (response.status !== 403) {
+        return response.json();
+      }
+      throw new Error("ratelimited");
+    })
+    .then((data) => {
+      try {
+        const localManifest = chrome.runtime.getManifest();
+        const masterManifest = JSON.parse(atob(data.content));
+        if (masterManifest.version !== localManifest.version) {
+          setUpdateNotification(
+            "Update for GitHub Pull Request Colorizer is available!"
+          );
+        }
+      } catch {
+        onError();
+      }
+    })
+    .catch((e) => {
+      if (e.message !== "ratelimited") {
+        onError();
+      }
+    });
+}
+
+checkForUpdates();
 
 try {
   colorizePullRequests();
