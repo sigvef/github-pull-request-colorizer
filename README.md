@@ -21,8 +21,10 @@ To install the project in safari do the following.
 
 - Clone this repo.
 - Open the Xcode project located in `safari-extension/github-colorizer/`.
-- Change the settings of the project to use your team and signing certificate.
 - Build and run the project (`⌘ + r`).
-- An empty GUI will pop up - ignore this.
-- Go to Safari, open settings (`⌘ + .`), click extensions and enable `github-colorizer-safari`.
-- Stop the program running in Xcode and close Xcode. The extension is now available in your Safari.
+- An empty GUI will pop up - press the button that says to close the app and open safari extensions.
+- Stop the program if it's not stopped yet.
+- Go to Safari, open settings `⌘ + .` (this might be open)
+- Go to the "Advanced" tab and select "Enable developer menu", as of the time of writing this, it's at the bottom
+- Go to your new "Developer" menu and select "Allow unsigned extensions"
+- Go back to settings, click extensions and enable `github-colorizer-safari`.
