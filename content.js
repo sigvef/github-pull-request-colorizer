@@ -250,3 +250,15 @@ document.addEventListener("DOMContentLoaded", colorizePullRequests);
 document.addEventListener("DOMContentLoaded", colorizeAnnotations);
 
 setInterval(colorizeAnnotations, 500);
+
+let currentHref = location.href;
+setInterval(() => {
+  if (currentHref !== location.href) {
+    currentHref = location.href;
+    try {
+      colorizePullRequests();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}, 500);
