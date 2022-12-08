@@ -41,10 +41,10 @@ function colorizePullRequests() {
   }
 
   [].forEach.call(document.querySelectorAll(".js-issue-row"), (row) => {
-    const isPR = !!row.querySelector('[aria-label="Open pull request"]');
-    const isDraftPR = !!row.querySelector(
-      '[aria-label="Open draft pull request"]'
-    );
+    const prIcon = row.querySelector("svg.octicon-git-pull-request");
+    const draftPrIcon = row.querySelector("svg.octicon-git-pull-request");
+    const isPR = !!prIcon || !!draftPrIcon;
+    const isDraftPR = !draftPrIcon;
 
     row.classList.add("github-pull-request-colorizer--row");
     if (darkMode) {
