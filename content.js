@@ -42,9 +42,9 @@ function colorizePullRequests() {
 
   [].forEach.call(document.querySelectorAll(".js-issue-row"), (row) => {
     const prIcon = row.querySelector("svg.octicon-git-pull-request");
-    const draftPrIcon = row.querySelector("svg.octicon-git-pull-request");
+    const draftPrIcon = row.querySelector("svg.octicon-git-pull-request-draft");
     const isPR = !!prIcon || !!draftPrIcon;
-    const isDraftPR = !draftPrIcon;
+    const isDraftPR = !!draftPrIcon;
 
     row.classList.add("github-pull-request-colorizer--row");
     if (darkMode) {

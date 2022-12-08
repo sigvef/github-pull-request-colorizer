@@ -26,19 +26,6 @@ a.github-pull-request-colorizer--repository {
   margin-left: 192px;
 }
 
-.github-pull-request-colorizer--draft-pr {
-  background: #f6f8fa;
-}
-
-.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--draft-pr {
-  background: #1f2a35;
-}
-
-.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--information-line,
-.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
-font-weight: 100 !important;
-}
-
 .github-pull-request-colorizer--dark-mode .github-pull-request-colorizer--title {
   color: white !important;
 }
@@ -49,14 +36,6 @@ font-weight: 100 !important;
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line,
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line a.muted-link {
   color: var(--color-scale-yellow-6) !important;
-}
-
-.github-pull-request-colorizer--draft-pr > * {
-  opacity: 0.25;
-}
-
-.github-pull-request-colorizer--draft-pr svg path {
-  fill: #24292e;
 }
 
 .markdown-body .container-md {
@@ -97,4 +76,30 @@ font-weight: 100 !important;
 .github-pull-request-colorizer--green-pr {
   border-top: 1px solid var(--color-border-muted) !important;
   transform: translateZ(10px);
+}
+
+.github-pull-request-colorizer--draft-pr > * {
+  opacity: 0.25;
+}
+
+.github-pull-request-colorizer--draft-pr svg path {
+  fill: #24292e !important;
+}
+
+.github-pull-request-colorizer--draft-pr {
+  background: #f6f8fa !important;
+  background-color: #f6f8fa !important;
+}
+
+.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--information-line,
+.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
+font-weight: 100 !important;
+color: black !important;
+}
+
+.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--draft-pr {
+  background: #1f2a35 !important;
+}
+.github-pull-request-colorizer--dark-mode .github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
+  color: white !important;
 }
