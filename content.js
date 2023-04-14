@@ -23,11 +23,7 @@ function colorizeAnnotations() {
 }
 
 function colorizePullRequests() {
-  const me = document
-    .querySelector(
-      ':is(.AppHeader-user, summary[aria-label="View profile and more"]) img.avatar'
-    )
-    .alt.slice(1);
+  const me = document.querySelector('meta[name="user-login"]').content;
 
   const colorMode = document.querySelector("html").dataset.colorMode;
   let darkMode = false;
