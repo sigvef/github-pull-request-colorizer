@@ -22,7 +22,7 @@ a.github-pull-request-colorizer--repository {
   font-weight: 100 !important;
 }
 
-.github-pull-request-colorizer--information-line {
+.github-pull-request-colorizer--multi-repo .github-pull-request-colorizer--information-line {
   margin-left: 192px;
 }
 
@@ -61,7 +61,7 @@ a.github-pull-request-colorizer--repository {
   fill: #24292e;
 }
 
-.github-pull-request-colorizer--build-status-parent {
+.github-pull-request-colorizer--multi-repo .github-pull-request-colorizer--build-status-parent {
   position: absolute;
   left: 176px;
   top: 9px;
