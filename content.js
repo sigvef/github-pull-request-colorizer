@@ -24,6 +24,10 @@ function colorizeAnnotations() {
 
 function colorizePullRequests() {
   const me = document.querySelector('meta[name="user-login"]').content;
+  const isMultiRepoView =
+    document
+      .querySelector('meta[name="selected-link"]')
+      .getAttribute("value") === "/pulls";
 
   const colorMode = document.querySelector("html").dataset.colorMode;
   let darkMode = false;
@@ -47,6 +51,9 @@ function colorizePullRequests() {
     row.classList.add("github-pull-request-colorizer--row");
     if (darkMode) {
       row.classList.add("github-pull-request-colorizer--dark-mode");
+    }
+    if (isMultiRepoView) {
+      row.classList.add("github-pull-request-colorizer--multi-repo");
     }
 
     const hasDeferredContent =
@@ -80,9 +87,6 @@ function colorizePullRequests() {
     const informationLineElement = row.querySelector("span.opened-by");
     const titleElement = row.querySelector(".Link--primary.h4");
     const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
-    const repoFullName = (
-      repositoryElement ? repositoryElement.innerText : ""
-    ).trim();
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
     if (repositoryElement) {
@@ -97,7 +101,7 @@ function colorizePullRequests() {
         "github-pull-request-colorizer--information-line"
       );
     }
-    if (PRIconElement) {
+    if (isMultiRepoView && PRIconElement) {
       PRIconElement.style.display = "none";
     }
 
