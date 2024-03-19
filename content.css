@@ -1,5 +1,6 @@
-.project-column .issue-card.project-card[data-card-state="[\"closed\"]"],
-.project-column .issue-card.project-card[data-card-state="[\"closed\",\"merged\"]"] {
+.project-column .issue-card.project-card[data-card-state='["closed"]'],
+.project-column
+  .issue-card.project-card[data-card-state='["closed","merged"]'] {
   opacity: 0.25;
 }
 
@@ -22,19 +23,25 @@ a.github-pull-request-colorizer--repository {
   font-weight: 100 !important;
 }
 
-.github-pull-request-colorizer--multi-repo .github-pull-request-colorizer--information-line {
+.github-pull-request-colorizer--multi-repo
+  .github-pull-request-colorizer--information-line {
   margin-left: 192px;
 }
 
-.github-pull-request-colorizer--dark-mode .github-pull-request-colorizer--title {
+.github-pull-request-colorizer--dark-mode
+  .github-pull-request-colorizer--title {
   color: white !important;
 }
 
-.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--title {
-  color: var(--color-attention-fg) !important;
+.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight
+  .github-pull-request-colorizer--title {
+  color: var(--fgColor-attention) !important;
 }
-.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line,
-.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight .github-pull-request-colorizer--information-line a.muted-link {
+.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight
+  .github-pull-request-colorizer--information-line,
+.github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--highlight
+  .github-pull-request-colorizer--information-line
+  a.muted-link {
   color: var(--color-scale-yellow-6) !important;
 }
 
@@ -52,30 +59,17 @@ a.github-pull-request-colorizer--repository {
   border-bottom-width: 1px;
 }
 
-.github-pull-request-colorizer--green-pr {
-  background-image: linear-gradient(45deg, var(--color-success-subtle) 25%, #ffffff00 25%, #ffffff00 50%, var(--color-success-subtle) 50%, var(--color-success-subtle) 75%, #ffffff00 75%, #ffffff00 100%);
-  background-size: calc(56.57px * 2) calc(56.57px * 2);
-}
-
-.github-pull-request-colorizer--green-pr svg path {
-  fill: #24292e;
-}
-
-.github-pull-request-colorizer--multi-repo .github-pull-request-colorizer--build-status-parent {
+.github-pull-request-colorizer--multi-repo
+  .github-pull-request-colorizer--build-status-parent {
   position: absolute;
   left: 176px;
   top: 9px;
 }
 
 .github-pull-request-colorizer--highlight {
-  background-color: var(--color-attention-subtle) !important;
-  border-top: 1px solid var(--color-border-muted) !important;
+  background-color: var(--bgColor-attention-muted) !important;
+  border-top: 1px solid var(--borderColor-muted) !important;
   transform: translateZ(20px);
-}
-
-.github-pull-request-colorizer--green-pr {
-  border-top: 1px solid var(--color-border-muted) !important;
-  transform: translateZ(10px);
 }
 
 .github-pull-request-colorizer--draft-pr > * {
@@ -91,15 +85,18 @@ a.github-pull-request-colorizer--repository {
   background-color: #f6f8fa !important;
 }
 
-.github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--information-line,
+.github-pull-request-colorizer--draft-pr
+  .github-pull-request-colorizer--information-line,
 .github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
-font-weight: 100 !important;
-color: black !important;
+  font-weight: 100 !important;
+  color: black !important;
 }
 
 .github-pull-request-colorizer--dark-mode.github-pull-request-colorizer--draft-pr {
   background: #1f2a35 !important;
 }
-.github-pull-request-colorizer--dark-mode .github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
+.github-pull-request-colorizer--dark-mode
+  .github-pull-request-colorizer--draft-pr
+  .github-pull-request-colorizer--title {
   color: white !important;
 }
