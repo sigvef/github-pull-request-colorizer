@@ -110,12 +110,9 @@ function colorizePullRequests() {
     }
 
     if (buildStatusElement) {
-      const parent = buildStatusElement.parentElement;
-      if (parent) {
-        parent.classList.add(
-          "github-pull-request-colorizer--build-status-parent"
-        );
-      }
+      buildStatusElement.classList.add(
+        "github-pull-request-colorizer--build-status"
+      );
     }
 
     let highlight = false;
@@ -173,13 +170,12 @@ function colorizePullRequests() {
       row.classList.add("github-pull-request-colorizer--draft-pr");
     }
 
-    const updatedClock = row.querySelector(".octicon-clock")
+    const updatedClock = row.querySelector(".octicon-clock");
     if (updatedClock) {
       updatedClock.style.width = "12px";
       updatedClock.style.paddingBottom = "2px";
     }
   });
-
 
   const hasDeferredContent =
     document.querySelector("batch-deferred-content") !== null;

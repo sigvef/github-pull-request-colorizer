@@ -60,7 +60,7 @@ a.github-pull-request-colorizer--repository {
 }
 
 .github-pull-request-colorizer--multi-repo
-  .github-pull-request-colorizer--build-status-parent {
+  .github-pull-request-colorizer--build-status {
   position: absolute;
   left: 176px;
   top: 9px;
