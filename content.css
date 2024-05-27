@@ -59,13 +59,6 @@ a.github-pull-request-colorizer--repository {
   border-bottom-width: 1px;
 }
 
-.github-pull-request-colorizer--multi-repo
-  .github-pull-request-colorizer--build-status-parent {
-  position: absolute;
-  left: 176px;
-  top: 9px;
-}
-
 .github-pull-request-colorizer--highlight {
   background-color: var(--bgColor-attention-muted) !important;
   border-top: 1px solid var(--borderColor-muted) !important;
