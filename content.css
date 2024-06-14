@@ -85,6 +85,11 @@ a.github-pull-request-colorizer--repository {
   background-color: #f6f8fa !important;
 }
 
+.github-pull-request-colorizer--draft-pr.github-pull-request-colorizer--highlight {
+  background: #faf8e2 !important;
+  background-color: #faf8e2 !important;
+}
+
 .github-pull-request-colorizer--draft-pr
   .github-pull-request-colorizer--information-line,
 .github-pull-request-colorizer--draft-pr .github-pull-request-colorizer--title {
