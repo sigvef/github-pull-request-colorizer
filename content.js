@@ -1,12 +1,15 @@
 function colorizeAnnotations() {
-  for (const element of document.querySelectorAll(".check-annotation code")) {
+  for (const element of document.querySelectorAll(
+    'div[class*="Annotation-module__annotationMessage--"]',
+  )) {
     const div = document.createElement("div");
     div.classList.add("highlight", "highlight-source-diff");
-    const pre = element.firstChild;
-    const lines = pre.textContent.split("\n");
-    div.appendChild(pre);
+    const lines = element.textContent
+      .split("\n")
+      .filter((x) => x !== "--- " && x !== "+++ " && x[0] !== "@");
+    div.style.whiteSpace = "pre";
+    div.style.fontFamily = "monospace";
     element.replaceWith(div);
-    pre.removeChild(pre.firstChild);
     for (const line of lines) {
       const span = document.createElement("span");
       span.textContent = line + "\n";
@@ -17,7 +20,7 @@ function colorizeAnnotations() {
       } else if (line[0] === "@") {
         span.classList.add("pl-mdr");
       }
-      pre.appendChild(span);
+      div.appendChild(span);
     }
   }
 }
