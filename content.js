@@ -70,22 +70,22 @@ function colorizePullRequests() {
       "Changes requested";
     const reviewRequired = !(approved || changesRequested);
     const assignees = Array.from(row.querySelectorAll(".from-avatar")).map(
-      (assignee) => assignee.alt.slice(1)
+      (assignee) => assignee.alt.slice(1),
     );
     const author = (row.querySelector(".opened-by .Link--muted") || {})
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;
     const failsTravis = !!row.querySelector(
-      ".commit-build-statuses .color-fg-danger"
+      ".commit-build-statuses .color-fg-danger",
     );
     const passesTravis = !!row.querySelector(
-      ".commit-build-statuses .color-fg-success"
+      ".commit-build-statuses .color-fg-success",
     );
     const skipLabel = row.querySelector(
-      'a.IssueLabel[data-name="Skip colorization"]'
+      'a.IssueLabel[data-name="Skip colorization"]',
     );
     const repositoryElement = row.querySelector(
-      "[data-hovercard-type=repository]"
+      "[data-hovercard-type=repository]",
     );
     const informationLineElement = row.querySelector("span.opened-by");
     const titleElement = row.querySelector(".Link--primary.h4");
@@ -96,12 +96,12 @@ function colorizePullRequests() {
       const name = repositoryElement.innerText;
       repositoryElement.innerText = name.replace(/^HyreAS\//, "");
       repositoryElement.classList.add(
-        "github-pull-request-colorizer--repository"
+        "github-pull-request-colorizer--repository",
       );
     }
     if (informationLineElement) {
       informationLineElement.parentElement.classList.add(
-        "github-pull-request-colorizer--information-line"
+        "github-pull-request-colorizer--information-line",
       );
     }
     if (isMultiRepoView && PRIconElement) {
@@ -114,7 +114,7 @@ function colorizePullRequests() {
 
     if (buildStatusElement) {
       buildStatusElement.classList.add(
-        "github-pull-request-colorizer--build-status"
+        "github-pull-request-colorizer--build-status",
       );
     }
 
@@ -190,12 +190,12 @@ function colorizePullRequests() {
 function checkForUpdates() {
   function setUpdateNotification(text) {
     const container = document.querySelector(
-      ".Box .Box-header .table-list-header-toggle"
+      ".Box .Box-header .table-list-header-toggle",
     );
     const notificationClassName = "github-pull-request-colorizer--notification";
 
     let notificationElement = container.querySelector(
-      "." + notificationClassName
+      "." + notificationClassName,
     );
     if (notificationElement) {
       notificationElement.textContent = text;
@@ -210,12 +210,12 @@ function checkForUpdates() {
 
   function onError() {
     setUpdateNotification(
-      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investigating and making a pull request!"
+      "Checking for github-pull-request-colorizer updates doesn't work in this browser, it seems :/ Consider investigating and making a pull request!",
     );
   }
 
   fetch(
-    "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json"
+    "https://api.github.com/repos/sigvef/github-pull-request-colorizer/contents/manifest.json",
   )
     .then((response) => {
       if (response.status !== 403) {
@@ -229,7 +229,7 @@ function checkForUpdates() {
         const masterManifest = JSON.parse(atob(data.content));
         if (masterManifest.version !== localManifest.version) {
           setUpdateNotification(
-            "Update for GitHub Pull Request Colorizer is available!"
+            "Update for GitHub Pull Request Colorizer is available!",
           );
         }
       } catch {
