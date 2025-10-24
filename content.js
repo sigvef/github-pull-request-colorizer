@@ -606,8 +606,6 @@ function injectCheckSummaryIntoTimeline(checkName, summaryHtml, checkData) {
   // Header with avatar
   const header = document.createElement("div");
   header.className = "Box-header";
-  header.style.background = "#f6f8fa";
-  header.style.borderBottom = "1px solid #d0d7de";
   header.style.padding = "8px 16px";
   header.style.fontWeight = "600";
   header.style.flexShrink = "0";
