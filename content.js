@@ -268,5 +268,578 @@ setInterval(() => {
     } catch (e) {
       console.log(e);
     }
+    try {
+      autoFetchCheckSummary();
+    } catch (e) {
+      console.log(e);
+    }
   }
 }, 500);
+
+// GitHub Check Fetcher
+console.log("GitHub Pull Request Colorizer: Check fetcher loaded");
+
+function extractRepoInfoFromUrl() {
+  const match = location.pathname.match(/^\/([^/]+)\/([^/]+)\/pull\/(\d+)/);
+  if (!match) {
+    return null;
+  }
+  return {
+    owner: match[1],
+    repo: match[2],
+    pullNumber: match[3],
+  };
+}
+
+async function fetchStatusChecks(owner, repo, pullNumber) {
+  const url = `https://github.com/${owner}/${repo}/pull/${pullNumber}/page_data/status_checks`;
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`GitHub internal API error: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching status checks:", error);
+    return null;
+  }
+}
+
+async function fetchCheckDetails(targetUrl) {
+  const fullUrl = `https://github.com${targetUrl}`;
+  try {
+    const response = await fetch(fullUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch check page: ${response.status}`);
+    }
+    const html = await response.text();
+
+    // Parse the HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    let summaryHtml = null;
+    let summaryText = null;
+
+    // Look for the check run summary section
+    const summarySection = doc.querySelector(
+      '[aria-label="Check run summary"]',
+    );
+    if (summarySection) {
+      const markdownBody = summarySection.querySelector(".markdown-body");
+      if (markdownBody) {
+        summaryHtml = markdownBody.cloneNode(true); // Clone the HTML element with formatting
+        summaryText = markdownBody.textContent.trim();
+      }
+    }
+
+    // Also try to find the check annotation messages
+    const annotations = [];
+    doc.querySelectorAll('[data-testid="check-annotation"]').forEach((ann) => {
+      annotations.push(ann.textContent.trim());
+    });
+
+    return {
+      summaryHtml, // The actual HTML element with formatting
+      summaryText, // Plain text version
+      annotations,
+      fullHtml: html, // Include full HTML for debugging
+    };
+  } catch (error) {
+    console.error("Error fetching check details:", error);
+    return null;
+  }
+}
+
+function getCommitShaFromPage() {
+  // Try multiple selectors to find the commit SHA
+  const selectors = [
+    'a[data-hovercard-type="commit"]',
+    '.commit-ref.current-branch a[href*="/commit/"]',
+    '.head-ref a[href*="/commit/"]',
+    'span.commit-ref a[href*="/commits/"]',
+    '[data-url*="/commit/"]',
+  ];
+
+  for (const selector of selectors) {
+    const element = document.querySelector(selector);
+    if (element && element.href) {
+      const match = element.href.match(/\/commits?\/([a-f0-9]{40})/);
+      if (match) {
+        return match[1];
+      }
+    }
+  }
+
+  // Try to find it in the timeline
+  const timelineCommit = document.querySelector(".TimelineItem .commit-id");
+  if (timelineCommit && timelineCommit.textContent) {
+    const sha = timelineCommit.textContent.trim();
+    if (sha.length >= 7) {
+      return sha;
+    }
+  }
+
+  return null;
+}
+
+async function fetchCheckSummary(checkName) {
+  const repoInfo = extractRepoInfoFromUrl();
+  if (!repoInfo) {
+    console.log("Not on a PR page");
+    return;
+  }
+
+  console.log(
+    `Fetching status checks for ${repoInfo.owner}/${repoInfo.repo} #${repoInfo.pullNumber}`,
+  );
+
+  const data = await fetchStatusChecks(
+    repoInfo.owner,
+    repoInfo.repo,
+    repoInfo.pullNumber,
+  );
+  if (!data) {
+    console.log("Failed to fetch status checks");
+    return;
+  }
+
+  console.log("Status checks data:", data);
+
+  // GitHub's internal API returns {statusChecks: [...], statusRollup: {...}, aliveChannels: {...}}
+  const checks = data.statusChecks || [];
+
+  if (!checks.length) {
+    console.log("No status checks found");
+    return;
+  }
+
+  console.log(`Found ${checks.length} checks`);
+
+  if (checkName) {
+    // Try to find by displayName or description (case-insensitive)
+    const check = checks.find(
+      (run) =>
+        run.displayName?.toLowerCase().includes(checkName.toLowerCase()) ||
+        run.description?.toLowerCase().includes(checkName.toLowerCase()),
+    );
+    if (check) {
+      console.log(`\n=== Check: ${check.displayName} ===`);
+      console.log(`Description: ${check.description}`);
+      console.log(`State: ${check.state}`);
+      console.log(`Duration: ${check.durationInSeconds}s`);
+      console.log(`Changed at: ${check.stateChangedAt}`);
+      console.log(`Is Required: ${check.isRequired}`);
+      console.log(`Additional Context: ${check.additionalContext || "None"}`);
+      console.log(`Target URL: ${check.targetUrl}`);
+
+      if (check.copilotCheckRunFailureContext) {
+        console.log(
+          "\nCopilot Failure Context:",
+          check.copilotCheckRunFailureContext,
+        );
+      }
+
+      console.log("\nFull check data:", check);
+
+      // Fetch the detailed check page
+      if (check.targetUrl) {
+        console.log("\nFetching detailed check output...");
+        const details = await fetchCheckDetails(check.targetUrl);
+        if (details) {
+          if (details.summaryHtml) {
+            console.log("\n=== Check Output/Summary ===");
+            console.log(details.summaryText);
+
+            // Inject the summary into the PR timeline
+            injectCheckSummaryIntoTimeline(
+              check.displayName,
+              details.summaryHtml,
+            );
+            console.log("✓ Summary injected into PR timeline");
+          } else {
+            console.log("\nNo summary found in standard locations.");
+            console.log("Full HTML length:", details.fullHtml.length);
+            console.log(
+              "You can inspect the HTML to find where the summary is located.",
+            );
+            // Log a snippet of the HTML for debugging
+            const snippet = details.fullHtml.substring(0, 1000);
+            console.log("HTML snippet (first 1000 chars):", snippet);
+          }
+
+          if (details.annotations && details.annotations.length > 0) {
+            console.log("\n=== Annotations ===");
+            details.annotations.forEach((ann, i) => {
+              console.log(`${i + 1}. ${ann}`);
+            });
+          }
+        }
+      }
+
+      return check; // Return the check for the button handler
+    } else {
+      console.log(`Check matching "${checkName}" not found`);
+      console.log("\nAvailable checks:");
+      checks.forEach((run, i) => {
+        console.log(
+          `${i + 1}. ${run.displayName} - ${run.state} (${run.description})`,
+        );
+      });
+    }
+  } else {
+    // List all checks
+    console.log("\nAvailable checks:");
+    checks.forEach((run, i) => {
+      const duration = run.durationInSeconds
+        ? ` (${run.durationInSeconds}s)`
+        : "";
+      console.log(`${i + 1}. ${run.displayName} - ${run.state}${duration}`);
+      console.log(`   ${run.description}`);
+    });
+
+    // Show rollup summary
+    if (data.statusRollup) {
+      console.log("\nStatus Rollup:");
+      console.log(`Combined State: ${data.statusRollup.combinedState}`);
+      if (data.statusRollup.summary) {
+        data.statusRollup.summary.forEach((s) => {
+          console.log(`  ${s.state}: ${s.count}`);
+        });
+      }
+    }
+  }
+}
+
+function showGlobalSpinner() {
+  const spinnerId = "check-summaries-global-spinner";
+
+  // Don't create if already exists
+  if (document.getElementById(spinnerId)) {
+    return;
+  }
+
+  // Find the merge box - it's typically at the end of the timeline
+  const mergeBox = document.querySelector(".merge-pr");
+  if (!mergeBox) {
+    console.log("Could not find merge box to inject spinner");
+    return;
+  }
+
+  // Create a simple centered spinner container
+  const container = document.createElement("div");
+  container.id = spinnerId;
+  container.style.padding = "16px";
+  container.style.textAlign = "center";
+  container.style.marginBottom = "16px";
+  container.innerHTML = `
+    <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="32" height="32" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
+      <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke">
+        <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="1s" repeatCount="indefinite"/>
+      </path>
+    </svg>
+  `;
+
+  // Insert before the merge box
+  mergeBox.parentNode.insertBefore(container, mergeBox);
+
+  // Remove border-top from discussion-timeline-actions to make it flow better
+  const timelineActions = document.querySelector(
+    ".discussion-timeline-actions",
+  );
+  if (timelineActions) {
+    timelineActions.style.borderTop = "none";
+  }
+}
+
+function hideGlobalSpinner() {
+  const spinner = document.getElementById("check-summaries-global-spinner");
+  if (spinner) {
+    spinner.remove();
+  }
+}
+
+function injectCheckSummaryIntoTimeline(checkName, summaryHtml, checkData) {
+  // Create a unique ID for this check summary
+  const safeName = checkName.replace(/[^a-zA-Z0-9]/g, "-");
+  const containerId = `check-summary-${safeName}`;
+
+  // Remove any existing summary for this check
+  const existingSummary = document.getElementById(containerId);
+  if (existingSummary) {
+    existingSummary.remove();
+  }
+
+  // Find where to insert - before the global spinner if it exists, otherwise before merge box
+  const spinner = document.getElementById("check-summaries-global-spinner");
+  const mergeBox = document.querySelector(".merge-pr");
+
+  let insertBefore;
+  if (spinner) {
+    insertBefore = spinner;
+  } else if (mergeBox) {
+    insertBefore = mergeBox;
+  } else {
+    console.log("Could not find merge box to inject summary");
+    return;
+  }
+
+  // Create a simple container for the summary (no timeline graphics)
+  const container = document.createElement("div");
+  container.id = containerId;
+  container.style.marginBottom = "16px";
+  container.style.marginLeft = "56px";
+
+  // Create a box similar to GitHub's comment boxes
+  const box = document.createElement("div");
+  box.className = "Box";
+  box.style.maxHeight = "448px";
+  box.style.display = "flex";
+  box.style.flexDirection = "column";
+
+  // Header with avatar
+  const header = document.createElement("div");
+  header.className = "Box-header";
+  header.style.background = "#f6f8fa";
+  header.style.borderBottom = "1px solid #d0d7de";
+  header.style.padding = "8px 16px";
+  header.style.fontWeight = "600";
+  header.style.flexShrink = "0";
+  header.style.display = "flex";
+  header.style.alignItems = "center";
+  header.style.gap = "8px";
+
+  // Add avatar if available
+  if (checkData && checkData.avatarUrl) {
+    const avatar = document.createElement("img");
+    avatar.src = checkData.avatarUrl;
+    avatar.alt = checkName;
+    avatar.width = 20;
+    avatar.height = 20;
+    avatar.style.borderRadius = "3px";
+    header.appendChild(avatar);
+  }
+
+  // Add check name
+  const nameSpan = document.createElement("span");
+  nameSpan.textContent = checkName;
+  nameSpan.style.flex = "1";
+  header.appendChild(nameSpan);
+
+  // Add status indicator if available
+  if (checkData && checkData.state) {
+    const statusBadge = document.createElement("span");
+    statusBadge.style.fontSize = "12px";
+    statusBadge.style.padding = "2px 8px";
+    statusBadge.style.borderRadius = "12px";
+    statusBadge.style.fontWeight = "500";
+
+    // Style based on state
+    if (checkData.state === "FAILURE") {
+      statusBadge.style.background = "#d1242f";
+      statusBadge.style.color = "white";
+      statusBadge.textContent = "Failed";
+    } else if (checkData.state === "SUCCESS") {
+      statusBadge.style.background = "#1a7f37";
+      statusBadge.style.color = "white";
+      statusBadge.textContent = "Passed";
+    } else if (checkData.state === "PENDING") {
+      statusBadge.style.background = "#bf8700";
+      statusBadge.style.color = "white";
+      statusBadge.textContent = "Pending";
+    } else {
+      statusBadge.style.background = "#6e7781";
+      statusBadge.style.color = "white";
+      statusBadge.textContent = checkData.state;
+    }
+
+    header.appendChild(statusBadge);
+  }
+
+  // Body with the summary
+  const summaryBody = document.createElement("div");
+  summaryBody.className = "Box-body";
+  summaryBody.style.padding = "16px";
+  summaryBody.style.overflowY = "auto";
+  summaryBody.style.overflowX = "hidden";
+  summaryBody.style.flex = "1";
+  summaryBody.style.minHeight = "0";
+  summaryBody.appendChild(summaryHtml);
+
+  box.appendChild(header);
+  box.appendChild(summaryBody);
+  container.appendChild(box);
+
+  // Insert before the spinner or merge box
+  insertBefore.parentNode.insertBefore(container, insertBefore);
+
+  // Remove border-top from discussion-timeline-actions to make it flow better
+  const timelineActions = document.querySelector(
+    ".discussion-timeline-actions",
+  );
+  if (timelineActions) {
+    timelineActions.style.borderTop = "none";
+  }
+}
+
+async function waitForChecksToLoad(maxWaitMs = 10000) {
+  const startTime = Date.now();
+
+  while (Date.now() - startTime < maxWaitMs) {
+    // Look for the Checks section
+    const checksSection = document.querySelector(
+      'section[aria-label="Checks"]',
+    );
+
+    if (checksSection) {
+      console.log("Checks section found in DOM");
+      return true;
+    }
+
+    // Wait 100ms before checking again (faster polling)
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  console.log("Timeout waiting for checks to load");
+  return false;
+}
+
+async function fetchAllInterestingCheckSummaries(priorityCheckNames = []) {
+  const repoInfo = extractRepoInfoFromUrl();
+  if (!repoInfo) {
+    console.log("Not on a PR page");
+    return;
+  }
+
+  console.log(
+    `Fetching status checks for ${repoInfo.owner}/${repoInfo.repo} #${repoInfo.pullNumber}`,
+  );
+
+  const data = await fetchStatusChecks(
+    repoInfo.owner,
+    repoInfo.repo,
+    repoInfo.pullNumber,
+  );
+  if (!data) {
+    console.log("Failed to fetch status checks");
+    return;
+  }
+
+  const checks = data.statusChecks || [];
+  if (!checks.length) {
+    console.log("No status checks found");
+    return;
+  }
+
+  console.log(`Found ${checks.length} checks`);
+
+  const checksToFetch = [];
+  const addedCheckNames = new Set();
+
+  // First, add all FAILURE checks
+  for (const check of checks) {
+    if (
+      check.state === "FAILURE" &&
+      check.targetUrl &&
+      !addedCheckNames.has(check.displayName)
+    ) {
+      console.log(`Adding failed check: ${check.displayName}`);
+      checksToFetch.push(check);
+      addedCheckNames.add(check.displayName);
+    }
+  }
+
+  // Then, add priority checks if they're not SUCCESS (and not already added)
+  for (const checkName of priorityCheckNames) {
+    if (addedCheckNames.has(checkName)) {
+      continue; // Already added as a failed check
+    }
+
+    const check = checks.find((run) => run.displayName === checkName);
+
+    if (check && check.targetUrl) {
+      if (check.state === "SUCCESS") {
+        console.log(
+          `Priority check "${check.displayName}" has SUCCESS status, skipping`,
+        );
+      } else {
+        console.log(
+          `Adding priority check: ${check.displayName} (${check.state})`,
+        );
+        checksToFetch.push(check);
+        addedCheckNames.add(check.displayName);
+      }
+    } else {
+      console.log(`Priority check "${checkName}" not found`);
+    }
+  }
+
+  if (checksToFetch.length === 0) {
+    console.log("No checks to fetch");
+    return;
+  }
+
+  // Show global spinner
+  showGlobalSpinner();
+
+  // Fetch the actual details for each check
+  for (const check of checksToFetch) {
+    console.log(`\n=== Fetching details: ${check.displayName} ===`);
+    const details = await fetchCheckDetails(check.targetUrl);
+    if (details && details.summaryHtml) {
+      injectCheckSummaryIntoTimeline(
+        check.displayName,
+        details.summaryHtml,
+        check,
+      );
+      console.log(`✓ Summary injected for ${check.displayName}`);
+    }
+  }
+
+  // Hide global spinner when all checks are loaded
+  hideGlobalSpinner();
+}
+
+async function autoFetchCheckSummary() {
+  const repoInfo = extractRepoInfoFromUrl();
+  if (!repoInfo) {
+    return; // Not on a PR page
+  }
+
+  // Check if we've already fetched for this page (look for any check summary)
+  const summaryExists = document.querySelector('[id^="check-summary-"]');
+  if (summaryExists) {
+    return; // Already fetched
+  }
+
+  console.log("Waiting for checks to load...");
+  const checksLoaded = await waitForChecksToLoad();
+
+  if (!checksLoaded) {
+    console.log("Checks didn't load in time, skipping auto-fetch");
+    return;
+  }
+
+  console.log("Auto-fetching check summaries...");
+  try {
+    // Fetch all failed checks, plus Mypy and GDPR if they're not successful
+    await fetchAllInterestingCheckSummaries(["Mypy", "GDPR"]);
+  } catch (error) {
+    console.error("Error auto-fetching check summary:", error);
+  }
+}
+
+// Auto-fetch when on PR page
+try {
+  autoFetchCheckSummary();
+} catch (e) {
+  console.error("Error auto-fetching check summary:", e);
+}
+
+document.addEventListener("DOMContentLoaded", autoFetchCheckSummary);
