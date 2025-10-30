@@ -273,6 +273,11 @@ setInterval(() => {
     } catch (e) {
       console.log(e);
     }
+    try {
+      handleStackedPR();
+    } catch (e) {
+      console.log(e);
+    }
   }
 }, 500);
 
@@ -841,3 +846,208 @@ try {
 }
 
 document.addEventListener("DOMContentLoaded", autoFetchCheckSummary);
+
+// Stacked PR Detection
+console.log("GitHub Pull Request Colorizer: Stacked PR detector loaded");
+
+function getBaseBranchFromPage() {
+  // Try multiple selectors to find the base branch
+  // GitHub shows "username wants to merge X commits into base:branch from head:branch"
+
+  // Look for the base branch in the PR header
+  const baseRefSelector = ".base-ref";
+  const baseRefElement = document.querySelector(baseRefSelector);
+  if (baseRefElement) {
+    // The text content might be just the branch name or include "base:"
+    const text = baseRefElement.textContent.trim();
+    // Remove "base:" prefix if present
+    const branchName = text.replace(/^base:/, "").trim();
+    if (branchName) {
+      return branchName;
+    }
+  }
+
+  // Alternative: look for span.commit-ref with css-truncate
+  const commitRefElements = document.querySelectorAll(".commit-ref");
+  for (const element of commitRefElements) {
+    // Check if this is the base ref (usually the first one in the merge info)
+    const titleAttr = element.getAttribute("title");
+    if (titleAttr) {
+      // Title might contain the full branch name
+      const parts = titleAttr.split(":");
+      if (parts.length > 0) {
+        const branchName = parts[parts.length - 1].trim();
+        if (branchName) {
+          return branchName;
+        }
+      }
+    }
+  }
+
+  // Another approach: look for the merge info text
+  const mergeInfoElement = document.querySelector(".gh-header-meta");
+  if (mergeInfoElement) {
+    const text = mergeInfoElement.textContent;
+    // Match pattern "into base_branch from"
+    const match = text.match(/into\s+([^\s]+)\s+from/);
+    if (match && match[1]) {
+      // Remove any prefix like "base:" or repo prefix
+      const branchName = match[1].replace(/^(base:|[^:]+:)/, "").trim();
+      if (branchName) {
+        return branchName;
+      }
+    }
+  }
+
+  return null;
+}
+
+function isMainBranch(branchName) {
+  const mainBranches = ["main", "master"];
+  return mainBranches.includes(branchName.toLowerCase());
+}
+
+function handleStackedPR() {
+  const repoInfo = extractRepoInfoFromUrl();
+  if (!repoInfo) {
+    return; // Not on a PR page
+  }
+
+  // Check if we've already handled this page
+  const alreadyHandled = document.getElementById("stacked-pr-warning");
+  if (alreadyHandled) {
+    return;
+  }
+
+  console.log("Checking if PR is stacked...");
+  const baseBranch = getBaseBranchFromPage();
+
+  if (!baseBranch) {
+    console.log("Could not determine base branch from page");
+    return;
+  }
+
+  console.log(`Base branch: ${baseBranch}`);
+
+  if (isMainBranch(baseBranch)) {
+    console.log("PR merges into main branch, no action needed");
+    return;
+  }
+
+  console.log(`PR is stacked! Base branch is "${baseBranch}"`);
+
+  // Find the merge button
+  const mergeBox = document.querySelector(".merge-pr");
+  if (!mergeBox) {
+    console.log("Could not find merge box");
+    return;
+  }
+
+  // Hide the merge box by default
+  mergeBox.style.display = "none";
+  mergeBox.dataset.hiddenByStackedPrDetector = "true";
+
+  // Create warning box
+  const warningContainer = document.createElement("div");
+  warningContainer.id = "stacked-pr-warning";
+  warningContainer.style.marginBottom = "16px";
+  warningContainer.style.marginTop = "16px";
+  warningContainer.style.marginLeft = "56px";
+
+  const warningBox = document.createElement("div");
+  warningBox.className = "Box Box--warning";
+  warningBox.style.border = "1px solid #bf8700";
+
+  // Header
+  const header = document.createElement("div");
+  header.className = "Box-header";
+  header.style.padding = "12px 16px";
+  header.style.fontWeight = "600";
+  header.style.display = "flex";
+  header.style.alignItems = "center";
+  header.style.gap = "8px";
+  header.style.background = "rgba(187, 128, 9, 0.1)";
+
+  // Warning icon
+  const icon = document.createElement("svg");
+  icon.setAttribute("width", "16");
+  icon.setAttribute("height", "16");
+  icon.setAttribute("viewBox", "0 0 16 16");
+  icon.setAttribute("fill", "currentColor");
+  icon.style.color = "#bf8700";
+  icon.innerHTML = `
+    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+  `;
+  header.appendChild(icon);
+
+  const headerText = document.createElement("span");
+  headerText.textContent = "Stacked PR Detected";
+  headerText.style.flex = "1";
+  header.appendChild(headerText);
+
+  // Body
+  const body = document.createElement("div");
+  body.className = "Box-body";
+  body.style.padding = "16px";
+
+  const message = document.createElement("p");
+  message.style.margin = "0 0 12px 0";
+  message.innerHTML = `This pull request merges into <strong>${baseBranch}</strong> (not main). The merge button is hidden to prevent accidental merging of stacked PRs.`;
+  body.appendChild(message);
+
+  // Try to find the base PR by searching for open PRs with the same head branch as our base
+  // We'll create a link to search for PRs with the base branch name
+  const searchLink = document.createElement("a");
+  searchLink.href = `https://github.com/${repoInfo.owner}/${repoInfo.repo}/pulls?q=is%3Apr+is%3Aopen+head%3A${baseBranch}`;
+  searchLink.textContent = `View PRs for "${baseBranch}" branch →`;
+  searchLink.style.color = "#bf8700";
+  searchLink.style.textDecoration = "none";
+  searchLink.style.fontWeight = "500";
+  searchLink.onmouseover = function () {
+    this.style.textDecoration = "underline";
+  };
+  searchLink.onmouseout = function () {
+    this.style.textDecoration = "none";
+  };
+  body.appendChild(searchLink);
+
+  // Escape hatch button
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.marginTop = "12px";
+  buttonContainer.style.paddingTop = "12px";
+  buttonContainer.style.borderTop = "1px solid rgba(187, 128, 9, 0.2)";
+
+  const escapeButton = document.createElement("button");
+  escapeButton.className = "btn btn-sm";
+  escapeButton.textContent = "Show merge button anyway";
+  escapeButton.style.fontSize = "12px";
+  escapeButton.onclick = function () {
+    if (mergeBox.style.display === "none") {
+      mergeBox.style.display = "";
+      escapeButton.textContent = "Hide merge button";
+    } else {
+      mergeBox.style.display = "none";
+      escapeButton.textContent = "Show merge button anyway";
+    }
+  };
+  buttonContainer.appendChild(escapeButton);
+  body.appendChild(buttonContainer);
+
+  warningBox.appendChild(header);
+  warningBox.appendChild(body);
+  warningContainer.appendChild(warningBox);
+
+  // Insert before the merge box
+  mergeBox.parentNode.insertBefore(warningContainer, mergeBox);
+
+  console.log("✓ Stacked PR warning displayed");
+}
+
+// Auto-detect stacked PRs when on PR page
+try {
+  handleStackedPR();
+} catch (e) {
+  console.error("Error handling stacked PR:", e);
+}
+
+document.addEventListener("DOMContentLoaded", handleStackedPR);
