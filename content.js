@@ -70,8 +70,9 @@ function colorizePullRequests() {
       "Changes requested";
     const reviewRequired = !(approved || changesRequested);
     const assignees = Array.from(row.querySelectorAll(".from-avatar")).map(
-      (assignee) => assignee.alt.slice(1),
-    );
+      // Copilot does not have a username
+      (assignee) => assignee.alt?.slice(1),
+    ).filter(it => it);
     const author = (row.querySelector(".opened-by .Link--muted") || {})
       .innerText;
     const title = (row.querySelector(".Link--primary.h4") || {}).innerText;

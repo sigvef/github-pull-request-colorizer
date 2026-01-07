@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "GitHub Pull Request Colorizer",
   "description": "This extension colorizes pull request listings.",
-  "version": "3.0",
+  "version": "3.1",
   "icons": {
     "32": "icon.png"
   },
