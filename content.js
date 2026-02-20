@@ -90,7 +90,7 @@ function colorizePullRequests() {
     );
     const informationLineElement = row.querySelector("span.opened-by");
     const titleElement = row.querySelector(".Link--primary.h4");
-    const PRIconElement = row.querySelector("div.flex-shrink-0.pt-2.pl-3");
+    const PRIconElement = row.firstElementChild.firstElementChild;
     const buildStatusElement = row.querySelector(".commit-build-statuses");
 
     if (repositoryElement) {
