@@ -531,7 +531,7 @@ function showGlobalSpinner() {
   }
 
   // Find the merge box - it's typically at the end of the timeline
-  const mergeBox = document.querySelector(".merge-pr");
+  const mergeBox = document.querySelector(".merge-pr") || document.querySelector("[data-testid='mergebox-partial']");
   if (!mergeBox) {
     console.log("Could not find merge box to inject spinner");
     return;
@@ -584,7 +584,7 @@ function injectCheckSummaryIntoTimeline(checkName, summaryHtml, checkData) {
 
   // Find where to insert - before the global spinner if it exists, otherwise before merge box
   const spinner = document.getElementById("check-summaries-global-spinner");
-  const mergeBox = document.querySelector(".merge-pr");
+  const mergeBox = document.querySelector(".merge-pr") || document.querySelector("[data-testid='mergebox-partial']");
 
   let insertBefore;
   if (spinner) {
@@ -938,7 +938,7 @@ function handleStackedPR() {
   console.log(`PR is stacked! Base branch is "${baseBranch}"`);
 
   // Find the merge button
-  const mergeBox = document.querySelector(".merge-pr");
+  const mergeBox = document.querySelector(".merge-pr") || document.querySelector("[data-testid='mergebox-partial']");
   if (!mergeBox) {
     console.log("Could not find merge box");
     return;
