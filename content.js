@@ -45,6 +45,106 @@ function colorizePullRequests() {
     darkMode = true;
   }
 
+  const newPullRequestUIRoot = document.querySelector('[data-testid="pulls-dashboard-surface-layout"]');
+  if (newPullRequestUIRoot) {
+    // Find the list that is adjacent to a h2 (Saying "Pull Requests")
+    const pullRequestList = newPullRequestUIRoot.querySelector('h2 ~ ul');
+    [].forEach.call(pullRequestList.querySelectorAll('li'), (row) => {
+      row.classList.add("github-pull-request-colorizer--row");
+      row.classList.add("github-pull-request-colorizer--multi-repo");
+      if (darkMode) {
+        row.classList.add("github-pull-request-colorizer--dark-mode");
+      }
+
+      const PRIconElement = row.querySelector("[class^=LeadingContent-]");
+      if (PRIconElement) {
+        PRIconElement.style.display = "none";
+      }
+
+      const titleElement = row.querySelector("[class^=Title-]");
+      if (titleElement) {
+        titleElement.classList.add("github-pull-request-colorizer--title");
+      }
+      const title = titleElement.querySelector('h4 a span span')?.textContent ?? '';
+
+      const repositoryElement = row.querySelector("[data-testid=repo-filter-link]");
+      if (repositoryElement) {
+        const name = repositoryElement.innerText;
+        repositoryElement.innerText = name.replace(/^HyreAS\//, "");
+        repositoryElement.classList.add(
+          "github-pull-request-colorizer--repository",
+        );
+      }
+
+      const isDraftPR = !!row.querySelector("svg.octicon-git-pull-request-draft");
+      if (isDraftPR) {
+        row.classList.add("github-pull-request-colorizer--draft-pr");
+      }
+
+      const failsBuild = !!row.querySelector("[aria-label='Status checks: failure']");
+      const passesBuild = !!row.querySelector("[aria-label='Status checks: success']");
+
+      const reviewDecision = row.querySelector("[data-testid=review-decision-icon] span span span");
+      const approved = reviewDecision?.textContent === "Approved";
+      const changesRequested = reviewDecision?.textContent === "Changes requested";
+      const reviewRequired = !(approved || changesRequested);
+
+      const author = row.querySelector("[data-testid=author-filter-link]")?.textContent;
+
+      const assignees = Array.from(row.querySelector("[data-component='AvatarStack']")?.children ?? []).map(
+        (childNode) => {
+          const buttonLabel = childNode.querySelector('button').getAttribute('aria-label');
+          const match = buttonLabel.match(/Filter by assignee (.+)/);
+          return match ? match[1] : null;
+        }
+      );
+
+      let highlight = false;
+      if (failsBuild && author === me) {
+        highlight = true;
+      }
+
+      if (changesRequested && author === me) {
+        highlight = true;
+      }
+
+      if (
+        !failsBuild &&
+        reviewRequired &&
+        author !== me &&
+        (assignees.includes(me) || assignees.length === 0)
+      ) {
+        highlight = true;
+      }
+
+      if (approved && passesBuild) {
+        highlight = true;
+      }
+
+      if (title.slice(0, 3) === "WIP") {
+        highlight = true;
+      }
+
+      if (title.slice(0, 5) === "[WIP]") {
+        highlight = true;
+      }
+
+      if (title.slice(0, 3) === "WIP" && author != me) {
+        highlight = false;
+      }
+
+      if (title.slice(0, 5) === "[WIP]" && author != me) {
+        highlight = false;
+      }
+
+      if (highlight) {
+        row.classList.add("github-pull-request-colorizer--highlight");
+      } else {
+        row.classList.remove("github-pull-request-colorizer--highlight");
+      }
+    });
+  }
+
   [].forEach.call(document.querySelectorAll(".js-issue-row"), (row) => {
     const prIcon = row.querySelector("svg.octicon-git-pull-request");
     const draftPrIcon = row.querySelector("svg.octicon-git-pull-request-draft");
@@ -185,11 +285,14 @@ function colorizePullRequests() {
     document.querySelector("batch-deferred-content") !== null;
   if (hasDeferredContent) {
     setTimeout(colorizePullRequests, 100);
+    setTimeout(colorizePullRequests, 2000);
   }
+  setTimeout(colorizePullRequests, 500);
 }
 
 function checkForUpdates() {
   function setUpdateNotification(text) {
+    return;
     const container = document.querySelector(
       ".Box .Box-header .table-list-header-toggle",
     );

@@ -14,6 +14,13 @@
   margin: -4px 0 -4px 16px;
 }
 
+button.github-pull-request-colorizer--repository {
+  text-align: left;
+  width: 120px;
+  font-weight: 100 !important;
+  color: var(--fgColor-accent);
+}
+
 a.github-pull-request-colorizer--repository {
   width: 160px;
   margin-right: 32px;
