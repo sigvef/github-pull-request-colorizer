@@ -47,25 +47,28 @@ function colorizePullRequests() {
 
   const newPullRequestUIRoot = document.querySelector('[data-testid="pulls-dashboard-surface-layout"]');
   if (newPullRequestUIRoot) {
-    // Find the list that is adjacent to a h2 (Saying "Pull Requests")
-    const pullRequestList = newPullRequestUIRoot.querySelector('h2 ~ ul');
-    [].forEach.call(pullRequestList.querySelectorAll('li'), (row) => {
+    const pullRequestList = newPullRequestUIRoot.querySelector(
+      'ul[data-listview-component="items-list"]',
+    );
+    [].forEach.call(pullRequestList?.querySelectorAll('li') ?? [], (row) => {
       row.classList.add("github-pull-request-colorizer--row");
       row.classList.add("github-pull-request-colorizer--multi-repo");
       if (darkMode) {
         row.classList.add("github-pull-request-colorizer--dark-mode");
       }
 
-      const PRIconElement = row.querySelector("[class^=LeadingContent-]");
+      const PRIconElement = row.querySelector("[class*=leadingElement]");
       if (PRIconElement) {
         PRIconElement.style.display = "none";
       }
 
-      const titleElement = row.querySelector("[class^=Title-]");
+      const titleElement = row.querySelector(
+        "[data-listview-item-title-container]",
+      );
       if (titleElement) {
         titleElement.classList.add("github-pull-request-colorizer--title");
       }
-      const title = titleElement.querySelector('h4 a span span')?.textContent ?? '';
+      const title = titleElement?.querySelector("a")?.textContent ?? "";
 
       const repositoryElement = row.querySelector("[data-testid=repo-filter-link]");
       if (repositoryElement) {
@@ -81,8 +84,14 @@ function colorizePullRequests() {
         row.classList.add("github-pull-request-colorizer--draft-pr");
       }
 
-      const failsBuild = !!row.querySelector("[aria-label='Status checks: failure']");
-      const passesBuild = !!row.querySelector("[aria-label='Status checks: success']");
+      // The badge's aria-label is a free-text summary, so the icon is the only stable indicator of state
+      const checksBadge = row.querySelector("[data-testid^=checks-status-badge]");
+      const failsBuild = !!checksBadge?.querySelector(
+        ".octicon-x, .octicon-x-circle, .octicon-x-circle-fill",
+      );
+      const passesBuild = !!checksBadge?.querySelector(
+        ".octicon-check, .octicon-check-circle, .octicon-check-circle-fill",
+      );
 
       const reviewDecision = row.querySelector("[data-testid=review-decision-icon] span span span");
       const approved = reviewDecision?.textContent === "Approved";
